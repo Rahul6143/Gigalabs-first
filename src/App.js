@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 // import './App.css';
+
+import Navbar from './components/Navbar';
 import HeroSection from './components/hero';
 import ResumeBuilder from './components/resume-builder';
 import GigaJobPortal from './components/jobportal';
@@ -12,15 +14,34 @@ import AILabSection from './components/ai.';
 function App() {
   return (
     <div className="App">
-      
+      <Navbar />
+
+      <section id="hero" >
         <HeroSection />
+      </section>
+
+      <section id="resume-builder" >
         <ResumeBuilder />
+      </section>
+
+      <section id="jobportal" >
         <GigaJobPortal />
+      </section>
+
+      <section id="lms" >
         <GigaLMSDashboard />
+      </section>
+
+      <section id="gigaspace" >
         <GigaSpace />
+      </section>
+
+      <section id="prescreen" >
         <GigaPrescreener />
-        <WhyChooseAndAiLab />
-        <AILabSection />
+      </section>
+
+      <WhyChooseAndAiLab />
+      <AILabSection />
     </div>
   );
 }
