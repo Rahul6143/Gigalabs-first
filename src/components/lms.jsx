@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Grid,
   Card,
   CardContent,
   Typography,
   Button,
   Avatar,
+  Container,
 } from "@mui/material";
-import {
-  Video,
-  Users,
-  Award,
-  TrendingUp,
-  ArrowRight,
-  BookOpen,
-} from "lucide-react";
+import { Video, Users, Award, TrendingUp, ArrowRight } from "lucide-react";
 
 const features = [
   {
@@ -68,7 +61,7 @@ const features = [
   },
 ];
 
-const GigaLMSDashboard = () => {
+export default function GigaLMSDashboard() {
   const [activeFeature, setActiveFeature] = useState("interactive");
 
   useEffect(() => {
@@ -81,48 +74,68 @@ const GigaLMSDashboard = () => {
   }, [activeFeature]);
 
   return (
-    <Box sx={{ bgcolor: "#f9fafb", minHeight: "100vh", py: 6 }}>
-      <Grid
-        container
-        spacing={6}
-        sx={{ maxWidth: "1200px", mx: "auto", px: 2 }}
-      >
-        {/* LEFT: Feature Cards */}
-        <Grid item xs={12} md={6}>
-          <Typography variant="h5" fontWeight="bold" gutterBottom>
-            Learning Features
-          </Typography>
-
-          <Grid container spacing={2}>
-            {features.map((feature) => {
-              const isActive = activeFeature === feature.id;
-              return (
-                <Grid item xs={12} key={feature.id}>
+    <Box sx={{ bgcolor: "#f9fafb", minHeight: "100vh", py: { xs: 4, md: 8 } }}>
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: { xs: 3, md: 6 },
+            width: "100%",
+          }}
+        >
+          {/* LEFT SIDE - Features */}
+          <Box sx={{ flex: 1 }}>
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              gutterBottom
+              sx={{ textAlign: { xs: "center", md: "left" } }}
+            >
+              Learning Features
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+              }}
+            >
+              {features.map((feature) => {
+                const isActive = activeFeature === feature.id;
+                return (
                   <Card
+                    key={feature.id}
                     onClick={() => setActiveFeature(feature.id)}
                     sx={{
+                      minHeight: "80px",
+                      width: "100%",
                       border: isActive
                         ? `2px solid ${feature.theme.border}`
                         : "1px solid #e5e7eb",
                       boxShadow: isActive ? 4 : 1,
                       cursor: "pointer",
                       transition: "all 0.3s ease",
+                      bgcolor: "#fff",
                       "&:hover": {
-                        transform: "translateY(-4px)",
+                        transform: "translateY(-2px)",
                         boxShadow: 3,
                       },
-                      "&:active": { transform: "scale(0.98)" },
                     }}
                   >
                     <CardContent
-                      sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
+                      }}
                     >
                       <Avatar
                         sx={{
                           bgcolor: isActive ? feature.theme.bg : "#f3f4f6",
                           color: feature.theme.icon,
-                          width: 36,
-                          height: 36,
+                          width: 40,
+                          height: 40,
                         }}
                       >
                         {feature.icon}
@@ -130,10 +143,9 @@ const GigaLMSDashboard = () => {
                       <Box>
                         <Typography
                           variant="subtitle1"
-                          fontWeight={600}
+                          fontWeight="bold"
                           sx={{
                             color: isActive ? feature.theme.text : "#111827",
-                            mb: 0.5,
                           }}
                         >
                           {feature.title}
@@ -141,7 +153,7 @@ const GigaLMSDashboard = () => {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: isActive ? feature.theme.text : "#4b5563",
+                            color: isActive ? feature.theme.text : "#6b7280",
                           }}
                         >
                           {feature.description}
@@ -149,82 +161,55 @@ const GigaLMSDashboard = () => {
                       </Box>
                     </CardContent>
                   </Card>
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Grid>
-
-        {/* RIGHT: Title + Description + Button */}
-        <Grid item xs={12} md={6}>
-          {/* Badge */}
-          <Box
-            sx={{
-              display: "inline-flex",
-              alignItems: "center",
-              bgcolor: "#dbeafe",
-              border: "1px solid #bfdbfe",
-              color: "#1e40af",
-              borderRadius: "20px",
-              px: 2,
-              py: 0.5,
-              mb: 2,
-              fontSize: "0.8rem",
-              fontWeight: 500,
-              gap: 1,
-            }}
-          >
-            <BookOpen size={16} />
-            Learning Management System
+                );
+              })}
+            </Box>
           </Box>
 
-          <Typography
-            variant="h3"
-            fontWeight="bold"
-            gutterBottom
-            sx={{ color: "#111827" }}
-          >
-            Giga LMS
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{ color: "#4b5563", lineHeight: 1.6, mb: 2 }}
-          >
-            Learning is at the core of every transformation. The Giga LMS is
-            designed to provide interactive, scalable, and flexible learning
-            experiences.
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{ color: "#4b5563", lineHeight: 1.6, mb: 3 }}
-          >
-            Unlike traditional systems, our LMS integrates mentorship,
-            project-based learning, and real-time feedback. It reflects the
-            strength of innovation labs that combine technology with pedagogy to
-            empower learners everywhere.
-          </Typography>
-
-          <Button
-            variant="contained"
+          {/* RIGHT SIDE - Content */}
+          <Box
             sx={{
-              bgcolor: "#2563eb",
-              borderRadius: "999px",
-              px: 3,
-              py: 1.2,
-              textTransform: "none",
-              fontSize: "1rem",
-              "&:hover": { bgcolor: "#1d4ed8" },
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              textAlign: { xs: "center", md: "left" },
             }}
-            endIcon={<ArrowRight size={18} />}
           >
-            Apply Now
-          </Button>
-        </Grid>
-      </Grid>
+            <Typography variant="h4" fontWeight="bold" gutterBottom>
+              Giga LMS
+            </Typography>
+            <Typography variant="body1" sx={{ color: "#4b5563", mb: 2 }}>
+              Learning is at the core of every transformation. The Giga LMS is
+              designed to provide interactive, scalable, and flexible learning
+              experiences.
+            </Typography>
+            <Typography variant="body1" sx={{ color: "#4b5563", mb: 3 }}>
+              Unlike traditional systems, our LMS integrates mentorship,
+              project-based learning, and real-time feedback. It reflects the
+              strength of innovation labs that combine technology with pedagogy
+              to empower learners everywhere.
+            </Typography>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#9333EA",
+                borderRadius: "999px",
+                px: 4,
+                py: 1.2,
+                textTransform: "none",
+                alignSelf: { xs: "center", md: "flex-start" },
+                "&:hover": {
+                  bgcolor: "#7e22ce",
+                },
+              }}
+              endIcon={<ArrowRight size={18} />}
+            >
+              Apply Now
+            </Button>
+          </Box>
+        </Box>
+      </Container>
     </Box>
   );
-};
-
-export default GigaLMSDashboard;
+}
