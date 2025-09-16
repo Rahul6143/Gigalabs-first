@@ -3,11 +3,9 @@ import {
   Box,
   Typography,
   Avatar,
-  Button,
   Card,
   CardContent,
   CardActions,
-  Grid,
   TextField,
   IconButton,
   Stack,
@@ -15,16 +13,17 @@ import {
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import AddIcon from '@mui/icons-material/Add';
-import StarIcon from '@mui/icons-material/Star';
 import PersonIcon from '@mui/icons-material/Person';
+import { makeStyles } from '@mui/styles';
 
+// Data definitions
 const legendaryPersonalities = [
   {
     name: "Mahatma Gandhi",
     title: "Freedom Fighter & Philosopher",
     specialty: "Non-violent resistance & Social reform",
     image: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg",
-    color: "#f97316", // orange
+    color: "#f97316",
     quote: "Be the change you wish to see in the world"
   },
   {
@@ -32,23 +31,23 @@ const legendaryPersonalities = [
     title: "Scientist & Former President",
     specialty: "Aerospace & Missile technology",
     image: "https://djcvm26yy6fab.cloudfront.net/1653801379_elibrary_content_abdul%20kalam.jpg",
-    color: "#3b82f6", // blue
+    color: "#3b82f6",
     quote: "Dream is not what you see in sleep, it's what doesn't let you sleep"
   },
   {
     name: "Sundar Pichai",
     title: "CEO of Google",
     specialty: "Technology leadership & Innovation",
-    image: "https://c.ndtvimg.com/2023-10/351d3hag_sundar-pichai_625x300_11_October_23.jpg?im=FeatureCrop,algorithm=dnn,width=1200,height=738",
-    color: "#10b981", // green
+    image: "https://c.ndtvimg.com/2023-10/351d3hag_sundar-pichai_625x300_11_October_23.jpg",
+    color: "#10b981",
     quote: "It's important not to be afraid to take risks"
   },
   {
     name: "Steve Jobs",
     title: "Co-founder of Apple",
     specialty: "Innovation & Design",
-    image: "https://hips.hearstapps.com/hmg-prod/images/apple-ceo-steve-jobs-speaks-during-an-apple-special-event-news-photo-1683661736.jpg?crop=1xw:0.39667xh;center,top&resize=1200:*",
-    color: "#6b7280", // gray
+    image: "https://hips.hearstapps.com/hmg-prod/images/apple-ceo-steve-jobs-speaks-during-an-apple-special-event-news-photo-1683661736.jpg",
+    color: "#6b7280",
     quote: "Stay hungry, stay foolish"
   }
 ];
@@ -80,7 +79,153 @@ const sampleConversations = {
   ]
 };
 
+// Styles
+const useStyles = makeStyles({
+  container: {
+    minHeight: '700px',
+    padding: '24px',
+    alignItems: 'center !important',
+    backgroundColor: 'transparent',
+    background: 'linear-gradient(135deg, #0f172a 0%, #4c1d95 50%, #0f172a 100%)',
+    color: '#ffffff1a !important',
+    fontFamily: 'Inter, sans-serif',
+    display: 'flex',
+    flexDirection: 'column',
+    paddingBottom: '4rem !important',
+    paddingTop: '4rem !important',
+  },
+  heroText: {
+    fontWeight: 'bold !important',
+    color: '#ffffff !important',
+  },
+  heroDesc: {
+    color: 'rgba(255,255,255,0.7)',
+    textAlign: 'center !important',
+    margin: '0 250px !important',
+  },
+  chip: {
+    borderColor: 'rgba(255,255,255,0.2) !important',
+    color: 'rgba(255,255,255,0.7) !important',
+  },
+  card: {
+    backgroundColor: 'rgba(255,255,255,0.05) !important',
+    border: '1px solid rgba(255,255,255,0.2)',
+    backdropFilter: 'blur(10px)',
+    cursor: 'pointer',
+    transition: 'transform 0.3s',
+    marginBottom: '8px',
+    '&:hover': {
+      transform: 'translateY(-2px)',
+      backgroundColor: 'rgba(255,255,255,0.15) !important',
+    },
+  },
+  selectedCard: {
+    backgroundColor: 'rgba(255,255,255,0.1) !important',
+    border: '1px solid rgba(255,255,255,0.2)',
+    backdropFilter: 'blur(10px)',
+    cursor: 'pointer',
+    transition: 'transform 0.3s',
+    marginBottom: '8px',
+    '&:hover': {
+      transform: 'translateY(-2px)',
+      backgroundColor: 'rgba(255,255,255,0.15) !important',
+    },
+  },
+  avatar: {
+    width: '56px',
+    height: '56px',
+  },
+  subtitle: {
+    fontWeight: 'bold',
+    color: '#ffffff !important',
+  },
+  caption: {
+    border: '1px solid rgba(255,255,255,0.3) !important',
+    padding: '2px 8px',
+    borderRadius: '4px',
+    color: 'rgba(255,255,255,0.7) !important',
+  },
+  bodyText: {
+    color: 'rgba(255,255,255,0.7)',
+  },
+  iconButton: {
+    backgroundColor: 'rgba(255,255,255,0.1) !important',
+    '&:hover': {
+      backgroundColor: 'rgba(255,255,255,0.2) !important',
+    },
+  },
+  quoteBox: {
+    marginTop: '16px',
+    paddingTop: '16px',
+    borderTop: '1px solid rgba(255,255,255,0.1)',
+  },
+  quoteText: {
+    fontStyle: 'italic',
+    color: 'rgba(191,219,254,0.8) !important',
+  },
+  chatCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '500px',
+    backgroundColor: 'rgba(255,255,255,0.05) !important',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255,255,255,0.2) !important',
+  },
+  chatHeader: {
+    flex: '0 0 auto',
+    borderBottom: '1px solid rgba(255,255,255,0.1)',
+    padding: '16px',
+  },
+  chatContent: {
+    flex: '1 1 auto',
+    overflowY: 'auto',
+    padding: '16px',
+    transition: 'opacity 0.5s ease-in-out',
+  },
+  chatFooter: {
+    padding: '16px',
+    borderTop: '1px solid rgba(255,255,255,0.1)',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  messageBoxUser: {
+    backgroundColor: '#3b82f6',
+    color: '#ffffff',
+    borderRadius: '8px',
+    padding: '12px !important',
+    maxWidth: '80%',
+  },
+  messageBoxAI: {
+    backgroundColor: 'rgba(255,255,255,0.1) !important',
+    color: '#ffffff',
+    borderRadius: '8px',
+    padding: '12px',
+    maxWidth: '80%',
+  },
+
+  textFieldRoot: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'rgba(255,255,255,0.2) !important',
+      },
+      '&:hover fieldset': {
+        borderColor: 'rgba(255,255,255,0.3) !important',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'rgba(255,255,255,0.5) !important',
+      },
+    },
+    '& input': {
+      color: '#ffffff',
+    },
+    '& .MuiInputBase-input::placeholder': {
+      color: 'rgba(255,255,255,0.5) !important',
+    },
+  },
+});
+
 export default function GigaSpace() {
+  const classes = useStyles();
   const [selectedPersonality, setSelectedPersonality] = useState(legendaryPersonalities[0]);
   const [chatMessages, setChatMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
@@ -93,82 +238,89 @@ export default function GigaSpace() {
     const messages = sampleConversations[selectedPersonality.name] || [];
     setChatMessages(messages);
   };
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setSelectedPersonality((prev) => {
+      const currentIndex = legendaryPersonalities.findIndex(p => p.name === prev.name);
+      const nextIndex = (currentIndex + 1) % legendaryPersonalities.length;
+      return legendaryPersonalities[nextIndex];
+    });
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, []);
+
 
   const sendMessage = () => {
     if (!messageInput.trim()) return;
     const newMessage = { type: 'user', text: messageInput };
-    setChatMessages(prev => [...prev, newMessage]);
+    setChatMessages((prev) => [...prev, newMessage]);
     setMessageInput('');
 
     setTimeout(() => {
       const aiResponse = {
         type: 'ai',
-        text: "That's an interesting question. Let me think about it."
+        text: "That's an interesting question. Let me think about it.",
       };
-      setChatMessages(prev => [...prev, aiResponse]);
+      setChatMessages((prev) => [...prev, aiResponse]);
     }, 1000);
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        p: 3,
-        bgcolor: 'transparent',
-        background: 'linear-gradient(135deg, #0f172a 0%, #4c1d95 50%, #0f172a 100%)',
-        color: '#fff',
-        fontFamily: 'Inter, sans-serif'
-      }}
-    >
-      {/* Hero Section */}
+    <Box className={classes.container}>
       <Box textAlign="center" mb={4}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h3" component="h1" gutterBottom className={classes.heroText}>
           Giga Space
         </Typography>
-        <Typography variant="body1" color="rgba(255,255,255,0.7)" maxWidth="600px" mx="auto">
+        <Typography variant="body1" className={classes.heroDesc}>
           Many great legends are no longer with us, yet the desire to meet, learn, and talk to them has always lived in our imagination.
           Gigaspace makes this possible through AI-powered conversations with historical icons, innovators, and modern leaders.
         </Typography>
         <Stack direction="row" spacing={1} justifyContent="center" mt={2} flexWrap="wrap">
-          <Chip label="Chat with legendary personalities" variant="outlined" sx={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }} />
-          <Chip label="Create your own AI personality" variant="outlined" sx={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }} />
-          <Chip label="Chat in 10+ languages" variant="outlined" sx={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }} />
+          <Chip label="Chat with legendary personalities" variant="outlined" className={classes.chip} />
+          <Chip label="Create your own AI personality" variant="outlined" className={classes.chip} />
+          <Chip label="Chat in 10+ languages" variant="outlined" className={classes.chip} />
         </Stack>
       </Box>
 
-      {/* Main Content */}
-      <Grid container spacing={3}>
-        {/* Personality Cards */}
-        <Grid item xs={12} md={6}>
+      <Box display="flex" flexDirection="row" width="100%" gap="16px" flexWrap="wrap" justifyContent="center">
+        <Box flex="1" minWidth="300px">
           <Stack spacing={2}>
             {legendaryPersonalities.map((personality, index) => (
               <Card
                 key={index}
-                sx={{
-                  bgcolor: selectedPersonality.name === personality.name ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  backdropFilter: 'blur(10px)',
-                  cursor: 'pointer',
-                  transition: 'transform 0.3s',
-                  '&:hover': { transform: 'translateY(-2px)', bgcolor: 'rgba(255,255,255,0.15)' }
-                }}
+                className={
+                  selectedPersonality.name === personality.name
+                    ? classes.selectedCard
+                    : classes.card
+                }
                 onClick={() => setSelectedPersonality(personality)}
               >
                 <CardContent>
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Avatar src={personality.image} sx={{ width: 56, height: 56, border: `2px solid ${personality.color}` }} />
+                  <Box display="flex" flexDirection="row" alignItems="center" gap="16px">
+                    <Avatar
+                      src={personality.image}
+                      className={classes.avatar}
+                      style={{ border: `2px solid ${personality.color}` }}
+                    />
                     <Box flex="1">
-                      <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>{personality.name}</Typography>
-                      <Typography variant="caption" sx={{ border: '1px solid rgba(255,255,255,0.3)', px: 1, borderRadius: 1 }}>{personality.title}</Typography>
-                      <Typography variant="body2" color="rgba(255,255,255,0.7)" noWrap>{personality.specialty}</Typography>
+                      <Typography variant="subtitle1" className={classes.subtitle}>
+                        {personality.name}
+                      </Typography>
+                      <Typography variant="caption" className={classes.caption}>
+                        {personality.title}
+                      </Typography>
+                      <Typography variant="body2" className={classes.bodyText} noWrap>
+                        {personality.specialty}
+                      </Typography>
                     </Box>
-                    <IconButton sx={{ bgcolor: 'rgba(255,255,255,0.1)', '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}>
-                      <SendIcon sx={{ color: '#fff' }} />
+                    <IconButton className={classes.iconButton}>
+                      <SendIcon style={{ color: '#ffffff' }} />
                     </IconButton>
-                  </Stack>
+                  </Box>
                   {selectedPersonality.name === personality.name && (
-                    <Box mt={2} pt={2} borderTop="1px solid rgba(255,255,255,0.1)">
-                      <Typography variant="body2" fontStyle="italic" color="rgba(191,219,254,0.8)">
+                    <Box className={classes.quoteBox}>
+                      <Typography variant="body2" className={classes.quoteText}>
                         "{personality.quote}"
                       </Typography>
                     </Box>
@@ -177,56 +329,64 @@ export default function GigaSpace() {
               </Card>
             ))}
           </Stack>
-        </Grid>
+        </Box>
 
-        {/* Chat Preview */}
-        <Grid item xs={12} md={6}>
-          <Card sx={{ display: 'flex', flexDirection: 'column', height: '500px', bgcolor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.2)' }}>
-            <CardContent sx={{ flex: '0 0 auto', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-              <Stack direction="row" spacing={2} alignItems="center">
-                <Avatar src={selectedPersonality.image} sx={{ border: `2px solid ${selectedPersonality.color}` }} />
+        <Box flex="1" minWidth="300px">
+          <Card className={classes.chatCard}>
+            <Box className={classes.chatHeader}>
+              <Box display="flex" flexDirection="row" alignItems="center" gap="16px">
+                <Avatar
+                  src={selectedPersonality.image}
+                  style={{ border: `2px solid ${selectedPersonality.color}` }}
+                />
                 <Box flex="1">
-                  <Typography variant="subtitle1">{selectedPersonality.name}</Typography>
-                  <Typography variant="caption" color="rgba(255,255,255,0.7)">Online • Powered by AI</Typography>
+                  <Typography variant="subtitle1" style={{ color: '#ffffff' }}>
+                    {selectedPersonality.name}
+                  </Typography>
+                  <Typography variant="caption" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                    Online • Powered by AI
+                  </Typography>
                 </Box>
-                <IconButton sx={{ color: '#fff' }}>
+                <IconButton style={{ color: '#ffffff' }}>
                   <AddIcon />
                 </IconButton>
-              </Stack>
-            </CardContent>
+              </Box>
+            </Box>
 
-            <CardContent sx={{ flex: '1 1 auto', overflowY: 'auto', p: 2 }}>
+            <Box className={classes.chatContent}>
               {chatMessages.map((msg, idx) => (
                 <Box
                   key={idx}
                   display="flex"
+                  flexDirection="row"
                   justifyContent={msg.type === 'user' ? 'flex-end' : 'flex-start'}
                   mb={1}
                 >
                   {msg.type === 'ai' && (
-                    <Avatar src={selectedPersonality.image} sx={{ mr: 1, border: `2px solid ${selectedPersonality.color}` }} />
+                    <Avatar
+                      src={selectedPersonality.image}
+                      style={{ marginRight: '8px', border: `2px solid ${selectedPersonality.color}` }}
+                    />
                   )}
                   <Box
-                    sx={{
-                      bgcolor: msg.type === 'user' ? 'primary.main' : 'rgba(255,255,255,0.1)',
-                      color: msg.type === 'user' ? 'primary.contrastText' : '#fff',
-                      borderRadius: 2,
-                      p: 1,
-                      maxWidth: '80%'
-                    }}
+                    className={
+                      msg.type === 'user'
+                        ? classes.messageBoxUser
+                        : classes.messageBoxAI
+                    }
                   >
                     <Typography variant="body2">{msg.text}</Typography>
                   </Box>
                   {msg.type === 'user' && (
-                    <Avatar sx={{ ml: 1, bgcolor: 'grey.500' }}>
+                    <Avatar style={{ marginLeft: '8px', backgroundColor: '#9e9e9e' }}>
                       <PersonIcon fontSize="small" />
                     </Avatar>
                   )}
                 </Box>
               ))}
-            </CardContent>
+            </Box>
 
-            <CardActions sx={{ p: 2, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+            <Box className={classes.chatFooter}>
               <TextField
                 variant="outlined"
                 size="small"
@@ -235,25 +395,15 @@ export default function GigaSpace() {
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
                 onKeyPress={(e) => { if (e.key === 'Enter') sendMessage(); }}
-                sx={{
-                  input: { color: '#fff' },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: 'rgba(255,255,255,0.2)' },
-                    '&:hover fieldset': { borderColor: 'rgba(255,255,255,0.3)' },
-                    '&.Mui-focused fieldset': { borderColor: 'rgba(255,255,255,0.5)' }
-                  },
-                  '& .MuiInputBase-input::placeholder': {
-                    color: 'rgba(255,255,255,0.5)'
-                  }
-                }}
+                className={classes.textFieldRoot}
               />
               <IconButton color="primary" onClick={sendMessage}>
                 <SendIcon />
               </IconButton>
-            </CardActions>
+            </Box>
           </Card>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Box>
   );
 }

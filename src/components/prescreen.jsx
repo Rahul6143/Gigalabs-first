@@ -6,10 +6,8 @@ import {
   CardContent,
   Box,
   Button,
-  ThemeProvider,
-  createTheme,
 } from "@mui/material";
-import { alpha } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
 import SchoolIcon from "@mui/icons-material/School";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -19,34 +17,145 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "'Inter', sans-serif",
+const useStyles = makeStyles({
+  root: {
+    minHeight: "700px",
+    backgroundColor: "#f9fafb",
+    paddingBottom: "48px",
   },
-  palette: {
-    primary: {
-      main: "#6b46c1",
-      dark: "#4c1d95",
+  container: {
+    paddingTop: "24px",
+  },
+  headerBox: {
+    textAlign: "center",
+    marginBottom: "24px",
+  },
+  userTypesBox: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "16px",
+    justifyContent: "center",
+    marginBottom: "32px",
+  },
+  userCard: {
+    flex: "1 1 200px",
+    minWidth: "200px",
+    maxWidth: "280px",
+    transition: "transform 0.2s, box-shadow 0.2s",
+    "&:hover": {
+      transform: "translateY(-6px)",
+      boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
     },
-    success: {
-      main: "#10b981",
-      light: "#d1fae5",
-    },
-    warning: {
-      main: "#f59e0b",
-      light: "#fef3c7",
-    },
-    info: {
-      main: "#0ea5e9",
-      light: "#e0f2fe",
-    },
-    purple: {
-      main: "#7e22ce",
-      light: "#ede9fe",
-    },
-    orange: {
-      main: "#f97316",
-      light: "#ffedd5",
+  },
+  userCardContent: {
+    textAlign: "center",
+    padding: "16px",
+  },
+  userIconBox: {
+    width: "38px",
+    height: "38px",
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "0 auto 8px auto",
+  },
+  howItWorksBox: {
+    borderRadius: "28px",
+    padding: "32px",
+    background: "linear-gradient(135deg, #6b46c1 0%, #4c1d95 100%)",
+    color: "#ffffff",
+    position: "relative",
+    overflow: "visible",
+    marginLeft: "-128px",
+    marginRight: "-128px",
+  },
+  howItWorksTitle: {
+    fontWeight: 800,
+    textAlign: "center",
+    marginBottom: "8px",
+  },
+  howItWorksDesc: {
+    textAlign: "center",
+    color: "rgba(255,255,255,0.9)",
+    marginBottom: "40px",
+  },
+  stepsContainer: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "24px",
+  },
+  stepBox: {
+    position: "relative",
+    zIndex: 2,
+    flex: "1 1 240px",
+    minWidth: "240px",
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: "14px",
+    padding: "16px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "16px",
+    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.02)",
+  },
+  connector: {
+    position: "absolute",
+    top: "50%",
+    right: "-25px",
+    width: "25px",
+    height: "2px",
+    backgroundColor: "rgba(255,255,255,0.18)",
+    transform: "translateY(-50%)",
+    zIndex: -1,
+  },
+  stepNumberBox: {
+    width: "56px",
+    height: "56px",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    background: "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))",
+    border: "3px solid rgba(255,255,255,0.12)",
+    fontWeight: 800,
+    fontSize: "0.9rem",
+  },
+  stepTextBox: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "4px",
+  },
+  stepTitle: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    fontWeight: 700,
+    color: "#ffffff",
+    fontSize: "1rem",
+  },
+  stepDesc: {
+    fontWeight: 500,
+    color: "rgba(255,255,255,0.9)",
+    fontSize: "0.9rem",
+  },
+  startButtonBox: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "24px",
+  },
+  startButton: {
+    borderRadius: "30px",
+    padding: "12px 40px",
+    background: "linear-gradient(90deg, #7e22ce 0%, #6b46c1 100%)",
+    boxShadow: "0 10px 30px rgba(107,70,193,0.18), inset 0 -3px 6px rgba(0,0,0,0.08)",
+    textTransform: "none",
+    fontWeight: 700,
+    "&:hover": {
+      background: "linear-gradient(90deg, #6b46c1 0%, #4c1d95 100%)",
     },
   },
 });
@@ -55,26 +164,26 @@ const userTypes = [
   {
     title: "Graduates (pre-2021)",
     desc: "Rebuild skills and gain industry exposure",
-    icon: <SchoolIcon fontSize="small" sx={{ color: "info.main" }} />,
-    bg: "info.light",
+    icon: <SchoolIcon style={{ color: "#0ea5e9" }} />,
+    bg: "#e0f2fe",
   },
   {
     title: "Career Switchers",
     desc: "Transition from non-tech to tech with guided programs",
-    icon: <RefreshIcon fontSize="small" sx={{ color: "success.main" }} />,
-    bg: "success.light",
+    icon: <RefreshIcon style={{ color: "#10b981" }} />,
+    bg: "#d1fae5",
   },
   {
     title: "Returnees",
     desc: "Restart confidently with job-specific training and mentorship",
-    icon: <EmojiPeopleIcon fontSize="small" sx={{ color: "purple.main" }} />,
-    bg: "purple.light",
+    icon: <EmojiPeopleIcon style={{ color: "#7e22ce" }} />,
+    bg: "#ede9fe",
   },
   {
     title: "Passionate Learners",
     desc: "Unlock opportunities with structured paths",
-    icon: <FavoriteIcon fontSize="small" sx={{ color: "orange.main" }} />,
-    bg: "orange.light",
+    icon: <FavoriteIcon style={{ color: "#f97316" }} />,
+    bg: "#ffedd5",
   },
 ];
 
@@ -83,250 +192,103 @@ const steps = [
     step: "01",
     title: "Assessment",
     desc: "Complete our comprehensive skill evaluation",
-    icon: <CheckCircleIcon sx={{ color: "#10b981", fontSize: 18 }} />,
+    icon: <CheckCircleIcon style={{ color: "#10b981", fontSize: "18px" }} />,
   },
   {
     step: "02",
     title: "Personalized Path",
     desc: "Get a customized learning and development plan",
-    icon: <AltRouteIcon sx={{ color: "#0ea5e9", fontSize: 18 }} />,
+    icon: <AltRouteIcon style={{ color: "#0ea5e9", fontSize: "18px" }} />,
   },
   {
     step: "03",
     title: "Job Readiness",
     desc: "Achieve industry-ready skills and confidence",
-    icon: <VerifiedUserIcon sx={{ color: "#f59e0b", fontSize: 18 }} />,
+    icon: <VerifiedUserIcon style={{ color: "#f59e0b", fontSize: "18px" }} />,
   },
 ];
 
 const GigaPrescreener = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ minHeight: "100vh", bgcolor: "#f9fafb", pb: 6 }}>
-        <Container maxWidth="lg" sx={{ pt: 3 }}>
-          {/* Header */}
-          <Box textAlign="center" mb={3}>
-            <Typography variant="h4" fontWeight="700" gutterBottom>
-              Giga Prescreener Tool
-            </Typography>
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              maxWidth="900px"
-              mx="auto"
-            >
-              A structured, transparent, and supportive pathway for graduates,
-              career switchers, and returnees to restart their IT careers with
-              confidence.
-            </Typography>
-          </Box>
+  const classes = useStyles();
 
-          {/* User Types */}
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              justifyContent: "center",
-              mb: 4,
-            }}
+  return (
+    <Box className={classes.root}>
+      <Container maxWidth="lg" className={classes.container}>
+        {/* Header */}
+        <Box className={classes.headerBox}>
+          <Typography variant="h4" style={{ fontWeight: 700 }} gutterBottom>
+            Giga Prescreener Tool
+          </Typography>
+          <Typography
+            variant="body1"
+            style={{ color: "#6b7280", maxWidth: "900px", margin: "0 auto" }}
           >
-            {userTypes.map((item, idx) => (
-              <Card
-                key={idx}
-                elevation={2}
-                sx={{
-                  flex: { xs: "1 1 100%", sm: "1 1 46%", md: "1 1 23%" },
-                  minWidth: 200,
-                  maxWidth: 280,
-                  transition: "transform .2s, box-shadow .2s",
-                  "&:hover": { transform: "translateY(-6px)", boxShadow: 6 },
-                }}
-              >
-                <CardContent sx={{ textAlign: "center", p: 2 }}>
-                  <Box
-                    sx={{
-                      width: 38,
-                      height: 38,
-                      bgcolor: item.bg,
-                      borderRadius: 2,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      mx: "auto",
-                      mb: 1,
-                    }}
-                  >
+            A structured, transparent, and supportive pathway for graduates,
+            career switchers, and returnees to restart their IT careers with
+            confidence.
+          </Typography>
+        </Box>
+
+        {/* User Types */}
+        <Box className={classes.userTypesBox}>
+          {userTypes.map((item, idx) => (
+            <Card key={idx} elevation={2} className={classes.userCard}>
+              <CardContent className={classes.userCardContent}>
+                <Box className={classes.userIconBox} style={{ backgroundColor: item.bg }}>
+                  {item.icon}
+                </Box>
+                <Typography variant="subtitle2" style={{ fontWeight: 700 }} gutterBottom>
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" style={{ color: "#6b7280" }}>
+                  {item.desc}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
+
+        {/* How It Works */}
+        <Box className={classes.howItWorksBox}>
+          <Typography variant="h5" className={classes.howItWorksTitle}>
+            How It Works
+          </Typography>
+          <Typography variant="body1" className={classes.howItWorksDesc}>
+            Three simple steps to move from assessment to job readiness
+          </Typography>
+
+          <Box className={classes.stepsContainer}>
+            {steps.map((item, index) => (
+              <Box key={index} className={classes.stepBox}>
+                {index < steps.length - 1 && <Box className={classes.connector} />}
+                <Box className={classes.stepNumberBox}>{item.step}</Box>
+                <Box className={classes.stepTextBox}>
+                  <Typography variant="body2" className={classes.stepTitle}>
                     {item.icon}
-                  </Box>
-                  <Typography variant="subtitle2" fontWeight={700} gutterBottom>
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" className={classes.stepDesc}>
                     {item.desc}
                   </Typography>
-                </CardContent>
-              </Card>
+                </Box>
+              </Box>
             ))}
           </Box>
+        </Box>
 
-          {/* How It Works */}
-          <Box
-            sx={{
-              borderRadius: "28px",
-              p: { xs: 2.5, md: 4 },
-              background:
-                "linear-gradient(135deg, rgba(107,70,193,1) 0%, rgba(76,29,149,1) 100%)",
-              color: "white",
-              position: "relative",
-              overflow: "visible",
-              mx: { xs: -12, md: -16 },
-            }}
+        {/* Start button */}
+        <Box className={classes.startButtonBox}>
+          <Button
+            variant="contained"
+            size="large"
+            endIcon={<TrackChangesIcon />}
+            className={classes.startButton}
           >
-            <Typography
-              variant="h5"
-              fontWeight="800"
-              align="center"
-              sx={{ mb: 1.2 }}
-            >
-              How It Works
-            </Typography>
-            <Typography
-              variant="body1"
-              align="center"
-              sx={{ color: alpha("#fff", 0.9), mb: { xs: 3, md: 5 } }}
-            >
-              Three simple steps to move from assessment to job readiness
-            </Typography>
-
-            <Box
-              sx={{
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: { xs: 2, md: 3 },
-              }}
-            >
-              {steps.map((item, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    position: "relative",
-                    zIndex: 2,
-                    flex: { xs: "1 1 100%", md: "1 1 32%" },
-                    minWidth: { xs: "100%", md: 240 },
-                    backgroundColor: "rgba(255,255,255,0.06)",
-                    borderRadius: "14px",
-                    px: { xs: 1.8, md: 2.2 },
-                    py: { xs: 0.8, md: 1 },
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.02)",
-                  }}
-                >
-                  {index < steps.length - 1 && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: "50%",
-                        right: { xs: -12, md: -25 },
-                        width: { xs: "calc(100% + 24px)", md: "calc(100% + 40px)" },
-                        maxWidth: 25,
-                        height: 2,
-                        bgcolor: alpha("#fff", 0.18),
-                        transform: "translateY(-50%)",
-                        zIndex: -1,
-                      }}
-                    />
-                  )}
-                  <Box
-                    sx={{
-                      width: 56,
-                      height: 56,
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      background:
-                        "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))",
-                      border: "3px solid rgba(255,255,255,0.12)",
-                      fontWeight: 800,
-                      fontSize: { xs: "0.85rem", md: "0.9rem" },
-                    }}
-                  >
-                    {item.step}
-                  </Box>
-
-                  <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 1,
-                        fontWeight: 700,
-                        fontSize: { xs: "0.95rem", md: "1rem" },
-                        color: "#fff",
-                      }}
-                    >
-                      <Box component="span" sx={{ display: "inline-flex" }}>
-                        {item.icon}
-                      </Box>
-                      {item.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontWeight: 500,
-                        color: alpha("#fff", 0.9),
-                        fontSize: { xs: "0.85rem", md: "0.9rem" },
-                      }}
-                    >
-                      {item.desc}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-
-          {/* Start button */}
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              mt: 3,
-            }}
-          >
-            <Button
-              variant="contained"
-              size="large"
-              endIcon={<TrackChangesIcon />}
-              sx={{
-                borderRadius: "30px",
-                px: 5,
-                py: 1.3,
-                background:
-                  "linear-gradient(90deg, rgba(126,34,206,1) 0%, rgba(107,70,193,1) 100%)",
-                boxShadow:
-                  "0 10px 30px rgba(107,70,193,0.18), inset 0 -3px 6px rgba(0,0,0,0.08)",
-                textTransform: "none",
-                fontWeight: 700,
-                "&:hover": {
-                  background:
-                    "linear-gradient(90deg, rgba(107,70,193,1) 0%, rgba(76,29,149,1) 100%)",
-                },
-              }}
-            >
-              Start Assessment
-            </Button>
-          </Box>
-        </Container>
-      </Box>
-    </ThemeProvider>
+            Start Assessment
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
