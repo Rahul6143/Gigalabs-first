@@ -1,242 +1,339 @@
+// WhyChooseGigaLabs.jsx
 import React, { useState } from "react";
-import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogActions,
-  Paper,
-} from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Box, Typography, Button, Paper, Modal } from "@mui/material";
 import { Zap, Target, Users, Check, X } from "lucide-react";
 
-export default function GigaLabs() {
+const useStyles = makeStyles(() => ({
+  root: {
+    minHeight: "700px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontFamily: "Inter, sans-serif",
+    background:
+      "linear-gradient(135deg, #070712 0%, #111229 30%, #231f3a 70%, #2b2743 100%)",
+    color: "#e6eef6",
+  },
+
+  section: {
+    width: "100%",
+    position: "relative",
+    overflow: "hidden",
+    padding: "4rem 1.5rem",
+
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background:
+        "url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.03'%3E%3Cpath d='m40 0 20 20-20 20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\") repeat",
+      zIndex: 0,
+    },
+    "&::after": {
+  content: '""', // <-- must be a string
+  position: "absolute",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: "radial-gradient(ellipse at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%)",
+}
+
+
+  },
+
+  container: {
+    maxWidth: 1300,
+    margin: "0 auto",
+    padding: "0 2rem",
+    position: "relative",
+    display: "grid",
+    gridTemplateColumns: "1.1fr 0.9fr",
+    gap: "3rem",
+    alignItems: "center",
+    "@media (max-width:1024px)": {
+      gridTemplateColumns: "1fr",
+      textAlign: "center",
+    },
+  },
+
+  // Title
+  title: {
+    fontFamily: "Space Grotesk, sans-serif",
+    fontSize: "2.8rem !important", // bigger
+    fontWeight: '700 !important',
+    lineHeight: '1 !important',
+    color: "#f8fafc",
+    letterSpacing: "-0.02em",
+    marginBottom: "1.2rem !important",
+    "@media (max-width:768px)": {
+      fontSize: "2.6rem",
+    },
+  },
+
+  highlight: {
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  },
+
+  subtitle: {
+    fontSize: "1.15rem",
+    fontWeight: 400,
+    lineHeight: 1.9,
+    marginBottom: "1rem !important",
+    color: "#cbd5e1",
+  },
+
+  benefitsGrid: {
+    display: "grid",
+    gap: "1rem",
+    marginBottom: "2rem",
+  },
+
+  benefitItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: "1rem",
+    padding: "1rem",
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: 12,
+    border: "1px solid rgba(148,163,184,0.08)",
+    backdropFilter: "blur(8px)",
+  },
+
+  benefitIcon: {
+    width: 42,
+    height: 42,
+    borderRadius: 12,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    color: "#fff",
+    flexShrink: 0,
+  },
+
+  benefitTitle: {
+    fontFamily: "Space Grotesk, sans-serif",
+    fontSize: "1.2rem",
+    fontWeight: '600',
+    color: "#f1f5f9",
+  },
+
+  cta: {
+    marginTop: "1.5rem",
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    color: "#fff !important",
+    fontFamily: "Space Grotesk, sans-serif",
+    padding: "16px 34px !important",
+    borderRadius: '50px !important',
+    fontSize: "1.15rem",
+    fontWeight: 700,
+    textTransform: "none",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+    "&:hover": {
+      transform: "translateY(-3px)",
+      boxShadow: "0 15px 40px rgba(0,0,0,0.35)",
+    },
+  },
+
+  comparisonCard: {
+    background: "#fff",
+    borderRadius: '20px !important',
+    padding: "2.5rem",
+    boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
+    border: "1px solid rgba(148,163,184,0.12)",
+  },
+
+  headerTitle: {
+    fontFamily: "Space Grotesk, sans-serif",
+    fontSize: "1.2rem !important",
+    fontWeight: '800 !important',
+    color: "#0f172a",
+    marginBottom: 6,
+  },
+
+  comparisonSubtitle: {
+    color: "#6b7280",
+    fontSize: "1rem",
+  },
+
+  comparisonGrid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "2rem",
+    marginTop: "1.5rem",
+    "@media (max-width:768px)": {
+      gridTemplateColumns: "1fr",
+    },
+  },
+
+  columnHeader: {
+    fontFamily: "Space Grotesk, sans-serif",
+    fontWeight: 700,
+    padding: "1rem",
+    textAlign: "center",
+    borderRadius: 12,
+    marginBottom: "1rem",
+    fontSize: "1.1rem",
+  },
+
+  gigalabsHeader: {
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    color: "#fff",
+  },
+
+  othersHeader: {
+    background: "rgba(148,163,184,0.16)",
+    color: "#334155",
+  },
+
+  comparisonItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.75rem",
+    padding: "0.7rem",
+    fontFamily: "Inter, sans-serif",
+    fontSize: "1rem",
+    color: "#475569",
+  },
+
+  checkIcon: {
+    color: "#22c55e",
+  },
+
+  xIcon: {
+    color: "#ef4444",
+  },
+}));
+
+export default function WhyChooseGigaLabs() {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      {/* Why Choose Section */}
-      <Box
-        sx={{
-          py: 8,
-          background: "linear-gradient(135deg, #0f172a, #1e293b, #334155, #475569)",
-          color: "#f1f5f9",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Grid container spacing={6} alignItems="center">
-            {/* Left Content */}
-            <Grid item xs={12} md={6}>
-              <Typography
-                variant="h3"
-                sx={{ fontWeight: 700, mb: 2, fontFamily: "Space Grotesk, sans-serif" }}
-              >
-                Why Choose{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    background: "linear-gradient(135deg,#22c55e,#10b981,#059669)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    fontWeight: 800,
-                  }}
-                >
-                  GigaLabs
-                </Box>{" "}
-                Over Other Research Labs?
-              </Typography>
+    <Box className={classes.root}>
+      <Box className={classes.section}>
+        <Box className={classes.container}>
+          {/* Left */}
+          <Box>
+            <Typography className={classes.title}>
+              Why Choose{" "}
+              <Box component="span" className={classes.highlight}>
+                GigaLabs
+              </Box>{" "}
+              Over Other Research Labs?
+            </Typography>
 
-              <Typography variant="body1" sx={{ mb: 2, color: "#cbd5e1" }}>
-                While there are many research labs and academic institutions, GigaLabs stands
-                apart by blending research with execution. Our goal is not limited to creating
-                papers or prototypes — we aim to deliver real-world applications.
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 3, color: "#cbd5e1" }}>
-                Students and professionals who work with us benefit from:
-              </Typography>
+            <Typography className={classes.subtitle}>
+              While there are many research labs and academic institutions,
+              GigaLabs stands apart by blending research with execution. Our
+              goal is not limited to creating papers or prototypes — we aim to
+              deliver real-world applications.
+            </Typography>
 
-              {/* Benefits */}
-              <Box sx={{ display: "grid", gap: 2, mb: 3 }}>
-                {[
-                  { icon: <Zap size={20} />, text: "Access to cutting-edge tech innovation" },
-                  { icon: <Target size={20} />, text: "Projects built from genuine industry challenges" },
-                  {
-                    icon: <Users size={20} />,
-                    text: "A collaborative ecosystem within an advanced research laboratory",
-                  },
-                ].map((item, i) => (
-                  <Paper
-                    key={i}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 2,
-                      p: 2,
-                      borderRadius: 2,
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(148,163,184,0.1)",
-                      backdropFilter: "blur(10px)",
-                      transition: "0.3s",
-                      "&:hover": {
-                        background: "rgba(34,197,94,0.1)",
-                        borderColor: "rgba(34,197,94,0.3)",
-                        transform: "translateY(-2px)",
-                      },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 2,
-                        background: "linear-gradient(135deg,#22c55e,#16a34a)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#0f172a",
-                      }}
-                    >
-                      {item.icon}
-                    </Box>
-                    <Typography sx={{ fontWeight: 600 }}>{item.text}</Typography>
-                  </Paper>
-                ))}
+            <Typography className={classes.subtitle}>
+              Students and professionals who work with us benefit from:
+            </Typography>
+
+            <Box className={classes.benefitsGrid}>
+              <Box className={classes.benefitItem}>
+                <Box className={classes.benefitIcon}>
+                  <Zap size={20} />
+                </Box>
+                <Typography className={classes.benefitTitle}>
+                  Access to cutting-edge tech innovation
+                </Typography>
               </Box>
 
-              <Button
-                onClick={() => setOpen(true)}
-                sx={{
-                  background: "linear-gradient(135deg,#22c55e,#16a34a)",
-                  color: "#0f172a",
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: 50,
-                  fontWeight: 600,
-                  boxShadow: "0 8px 30px rgba(34,197,94,0.4)",
-                  "&:hover": {
-                    transform: "translateY(-3px) scale(1.05)",
-                    boxShadow: "0 15px 40px rgba(34,197,94,0.6)",
-                    background: "linear-gradient(135deg,#22c55e,#16a34a)",
-                  },
-                }}
-              >
-                Join Our Innovation Hub
-              </Button>
-            </Grid>
+              <Box className={classes.benefitItem}>
+                <Box className={classes.benefitIcon}>
+                  <Target size={20} />
+                </Box>
+                <Typography className={classes.benefitTitle}>
+                  Projects built from genuine industry challenges
+                </Typography>
+              </Box>
 
-            {/* Right Comparison */}
-            <Grid item xs={12} md={6}>
-              <Paper
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.15)",
-                }}
-              >
-                <Typography variant="h5" align="center" sx={{ fontWeight: 700, mb: 1 }}>
+              <Box className={classes.benefitItem}>
+                <Box className={classes.benefitIcon}>
+                  <Users size={20} />
+                </Box>
+                <Typography className={classes.benefitTitle}>
+                  A collaborative ecosystem within an advanced research
+                  laboratory
+                </Typography>
+              </Box>
+            </Box>
+
+            <Button className={classes.cta} onClick={() => setOpen(true)}>
+              Join Our Innovation Hub
+            </Button>
+          </Box>
+
+          {/* Right */}
+          <Box>
+            <Paper className={classes.comparisonCard} elevation={0}>
+              <Box textAlign="center">
+                <Typography className={classes.headerTitle}>
                   GigaLabs vs Traditional Labs
                 </Typography>
-                <Typography variant="body2" align="center" sx={{ mb: 3, color: "#64748b" }}>
+                <Typography className={classes.comparisonSubtitle}>
                   See the difference in approach
                 </Typography>
+              </Box>
 
-                <Grid container spacing={4}>
-                  {/* GigaLabs */}
-                  <Grid item xs={6}>
-                    <Box
-                      sx={{
-                        textAlign: "center",
-                        p: 1.5,
-                        mb: 2,
-                        borderRadius: 2,
-                        background: "linear-gradient(135deg,#22c55e,#16a34a)",
-                        color: "#0f172a",
-                        fontWeight: 600,
-                      }}
-                    >
-                      GigaLabs
+              <Box className={classes.comparisonGrid}>
+                <Box>
+                  <Box
+                    className={`${classes.columnHeader} ${classes.gigalabsHeader}`}
+                  >
+                    GigaLabs
+                  </Box>
+                  {[
+                    "Real-world applications",
+                    "Industry partnerships",
+                    "Startup incubation",
+                    "Market-ready products",
+                    "Career-focused learning",
+                  ].map((t, i) => (
+                    <Box key={i} className={classes.comparisonItem}>
+                      <Check size={18} className={classes.checkIcon} />
+                      <span>{t}</span>
                     </Box>
-                    {[
-                      "Real-world applications",
-                      "Industry partnerships",
-                      "Startup incubation",
-                      "Market-ready products",
-                      "Career-focused learning",
-                    ].map((text, i) => (
-                      <Box key={i} sx={{ display: "flex", gap: 1, mb: 1, alignItems: "center" }}>
-                        <Check size={16} color="#22c55e" />
-                        <Typography variant="body2">{text}</Typography>
-                      </Box>
-                    ))}
-                  </Grid>
+                  ))}
+                </Box>
 
-                  {/* Traditional Labs */}
-                  <Grid item xs={6}>
-                    <Box
-                      sx={{
-                        textAlign: "center",
-                        p: 1.5,
-                        mb: 2,
-                        borderRadius: 2,
-                        background: "rgba(148,163,184,0.2)",
-                        color: "#475569",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Traditional Labs
+                <Box>
+                  <Box
+                    className={`${classes.columnHeader} ${classes.othersHeader}`}
+                  >
+                    Traditional Labs
+                  </Box>
+                  {[
+                    "Academic papers only",
+                    "Limited industry exposure",
+                    "Theoretical focus",
+                    "Prototype-stage only",
+                    "Research-focused",
+                  ].map((t, i) => (
+                    <Box key={i} className={classes.comparisonItem}>
+                      <X size={18} className={classes.xIcon} />
+                      <span>{t}</span>
                     </Box>
-                    {[
-                      "Academic papers only",
-                      "Limited industry exposure",
-                      "Theoretical focus",
-                      "Prototype-stage only",
-                      "Research-focused",
-                    ].map((text, i) => (
-                      <Box key={i} sx={{ display: "flex", gap: 1, mb: 1, alignItems: "center" }}>
-                        <X size={16} color="#ef4444" />
-                        <Typography variant="body2">{text}</Typography>
-                      </Box>
-                    ))}
-                  </Grid>
-                </Grid>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
+                  ))}
+                </Box>
+              </Box>
+            </Paper>
+          </Box>
+        </Box>
       </Box>
-
-      {/* Modal */}
-      <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
-        <DialogTitle sx={{ fontWeight: 700 }}>Apply Now</DialogTitle>
-        <DialogContent>
-          <Typography sx={{ color: "#475569", mb: 2 }}>
-            Thank you for your interest in GigaLabs! Join our innovation community and start
-            building the future with us.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => setOpen(false)}
-            sx={{
-              background: "linear-gradient(135deg,#22c55e,#16a34a)",
-              color: "#0f172a",
-              px: 3,
-              py: 1,
-              borderRadius: 25,
-              fontWeight: 600,
-              "&:hover": {
-                transform: "translateY(-2px)",
-                boxShadow: "0 8px 20px rgba(34,197,94,0.4)",
-              },
-            }}
-          >
-            Get Started
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+    </Box>
   );
 }

@@ -1,182 +1,327 @@
-import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { keyframes } from "@mui/system";
+import React, { useState } from "react";
+import { makeStyles } from "@mui/styles";
+import { Box, Typography, Button, Modal } from "@mui/material";
 
-// Orbit rotation animations
-const rotateClockwise = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
+const useStyles = makeStyles(() => ({
+  root: {
+    margin: 0,
+    fontFamily: `"Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif`,
+    background:
+      "linear-gradient(135deg, #0a0b1e 0%, #1a1b3a 30%, #2d2e5f 70%, #3f4075 100%)",
+    // minHeight: "700px",
+    color: "#e2e8f0",
+    lineHeight: 1.6,
+    fontWeight: 400,
+    // width:'100vw',
+    height:'auto',
+  },
+  section: {
+    padding: "8rem 2rem 6rem",
+    background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
+    position: "relative",
+    overflow: "hidden",
+  },
+  sectionBefore: {
+    content: "''",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background:
+      "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\") repeat",
+    zIndex: 1,
+  },
+  container: {
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 2rem",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "5rem",
+    alignItems: "center",
+    position: "relative",
+    zIndex: 2,
+    "@media (max-width:1024px)": {
+      gridTemplateColumns: "1fr",
+      gap: "3rem",
+    },
+  },
+  visual: {
+    position: "relative",
+    animation: "$slideInLeft 0.8s ease-out",
+  },
+  visualization: {
+    position: "relative",
+    width: "100%",
+    height: "400px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    "@media (max-width:768px)": {
+      height: "300px",
+    },
+  },
+  brainContainer: {
+    position: "relative",
+    width: "300px",
+    height: "300px",
+    "@media (max-width:768px)": {
+      width: "250px",
+      height: "250px",
+    },
+  },
+  orbit: {
+    position: "absolute",
+    border: "2px solid rgba(59,130,246,0.3)",
+    borderRadius: "50%",
+    animation: "$spin 20s linear infinite",
+  },
+  orbit1: {
+    width: "200px",
+    height: "200px",
+    top: "50px",
+    left: "50px",
+    "@media (max-width:768px)": {
+      width: "150px",
+      height: "150px",
+    },
+  },
+  orbit2: {
+    width: "250px",
+    height: "250px",
+    top: "25px",
+    left: "25px",
+    animationDuration: "25s",
+    "@media (max-width:768px)": {
+      width: "200px",
+      height: "200px",
+    },
+  },
+  orbit3: {
+    width: "300px",
+    height: "300px",
+    top: 0,
+    left: 0,
+    animationDuration: "30s",
+    "@media (max-width:768px)": {
+      width: "250px",
+      height: "250px",
+    },
+  },
+  node: {
+    position: "absolute",
+    width: "12px",
+    height: "12px",
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    borderRadius: "50%",
+   boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    animation: "$nodeGlow 2s ease-in-out infinite alternate",
+  },
+  node1: { top: "-6px", left: "50%", transform: "translateX(-50%)" },
+  node2: { bottom: "-6px", left: "50%", transform: "translateX(-50%)" },
+  node3: { top: "50%", right: "-6px", transform: "translateY(-50%)" },
+  node4: { top: "50%", left: "-6px", transform: "translateY(-50%)" },
+  node5: { top: "3%", right: "25%" },
+  node6: { bottom: "3%", left: "25%" },
+  brain: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "80px",
+    height: "80px",
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    animation: "$pulse 3s ease-in-out infinite",
+  },
+  content: {
+    color: "#0f172a",
+    animation: "$slideInRight 0.8s ease-out",
+  },
+  title: {
+    fontFamily: `"Space Grotesk", sans-serif`,
+    fontSize: "2.75rem !important",
+    fontWeight: 700,
+    lineHeight: 1.2,
+    marginBottom: "1.5rem !important",
+    color: "#0f172a",
+    letterSpacing: "-0.02em",
+    whiteSpace: "nowrap",
+    "@media (max-width:1024px)": {
+      fontSize: "2.5rem",
+    },
+    "@media (max-width:768px)": {
+      fontSize: "2rem",
+    },
+  },
+  highlight: {
+    background:
+      "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    fontWeight: 800,
+  },
+  description: {
+    fontFamily: `"Inter", sans-serif`,
+    fontSize: "1.2rem !important",
+    fontWeight: 400,
+    lineHeight: '1.7 !important',
+    marginBottom: "3rem !important",
+    color: "#64748b",
+    letterSpacing: "-0.01em",
+  },
+  cta: {
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    color: "#ffffff !important",
+    fontFamily: `"Space Grotesk", sans-serif`,
+    padding: "1.2rem 3rem !important",
+    border: "none",
+    borderRadius: "50px !important",
+    fontSize: "1.1rem",
+    fontWeight: 600,
+    cursor: "pointer",
+    transition: "all 0.4s cubic-bezier(0.4,0,0.2,1)",
+   boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    "&:hover": {
+      transform: "translateY(-3px) scale(1.05)",
+     boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    },
+  },
+  modalContent: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    padding: "30px",
+    borderRadius: "20px",
+    maxWidth: "450px",
+    width: "90%",
+    background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
+    border: "2px solid rgba(148,163,184,0.2)",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+  },
+  popupTitle: {
+    color: "#0f172a",
+    fontFamily: `"Space Grotesk", sans-serif`,
+    fontWeight: 700,
+    marginBottom: "15px",
+    fontSize: "1.8rem",
+    letterSpacing: "-0.01em",
+  },
+  popupText: {
+    color: "#475569",
+    fontFamily: `"Inter", sans-serif`,
+    marginBottom: "20px",
+    lineHeight: 1.6,
+    letterSpacing: "-0.01em",
+  },
+  popupButton: {
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    color: "#0f172a",
+    fontFamily: `"Space Grotesk", sans-serif`,
+    padding: "12px 24px",
+    border: "none",
+    borderRadius: "25px",
+    cursor: "pointer",
+    fontWeight: 600,
+    transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
+    "&:hover": {
+      transform: "translateY(-2px)",
+      boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    },
+  },
 
-const rotateAntiClockwise = keyframes`
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
-`;
+  /* Animations */
+  "@keyframes spin": {
+    from: { transform: "rotate(0deg)" },
+    to: { transform: "rotate(360deg)" },
+  },
+  "@keyframes pulse": {
+    "0%,100%": { transform: "translate(-50%, -50%) scale(1)" },
+    "50%": { transform: "translate(-50%, -50%) scale(1.1)" },
+  },
+  "@keyframes nodeGlow": {
+    "0%": { boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)", },
+    "100%": { boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)", },
+  },
+  "@keyframes slideInLeft": {
+    from: { opacity: 0, transform: "translateX(-50px)" },
+    to: { opacity: 1, transform: "translateX(0)" },
+  },
+  "@keyframes slideInRight": {
+    from: { opacity: 0, transform: "translateX(50px)" },
+    to: { opacity: 1, transform: "translateX(0)" },
+  },
+}));
 
-export default function AILabSection() {
+export default function AiLabSection() {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
   return (
-    <Box
-      sx={{
-        py: 12,
-        background: "linear-gradient(135deg,#0f172a,#1e293b,#334155)",
-        color: "#f1f5f9",
-      }}
-    >
-      <Container maxWidth="lg">
-        <Grid container spacing={8} alignItems="center">
-          {/* Text Section */}
-          <Grid item xs={12} md={6}>
-            <Typography
-              variant="h3"
-              sx={{
-                fontWeight: 700,
-                mb: 3,
-                fontFamily: "Space Grotesk, sans-serif",
-              }}
-            >
-              Welcome to the{" "}
-              <Box
-                component="span"
-                sx={{
-                  background: "linear-gradient(135deg,#22c55e,#10b981,#059669)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  fontWeight: 800,
-                }}
-              >
-                AI Lab
+    <Box className={classes.root}>
+      <section className={classes.section}>
+        <Box className={classes.container}>
+          {/* Left Visual */}
+          <Box className={classes.visual}>
+            <Box className={classes.visualization}>
+              <Box className={classes.brainContainer}>
+                <Box className={`${classes.orbit} ${classes.orbit1}`}>
+                  <Box className={`${classes.node} ${classes.node1}`} />
+                  <Box className={`${classes.node} ${classes.node2}`} />
+                </Box>
+                <Box className={`${classes.orbit} ${classes.orbit2}`}>
+                  <Box className={`${classes.node} ${classes.node3}`} />
+                  <Box className={`${classes.node} ${classes.node4}`} />
+                </Box>
+                <Box className={`${classes.orbit} ${classes.orbit3}`}>
+                  <Box className={`${classes.node} ${classes.node5}`} />
+                  <Box className={`${classes.node} ${classes.node6}`} />
+                </Box>
+                <Box className={classes.brain}></Box>
               </Box>
-            </Typography>
-
-            <Typography variant="body1" sx={{ mb: 2, color: "#cbd5e1" }}>
-              Our AI Lab is a space where innovation meets execution. Students,
-              researchers, and industry experts come together to solve complex
-              problems using Artificial Intelligence.
-            </Typography>
-
-            <Typography variant="body1" sx={{ mb: 2, color: "#cbd5e1" }}>
-              We work on cutting-edge fields like Computer Vision, Natural
-              Language Processing, Robotics, and more — with a strong focus on
-              real-world applications.
-            </Typography>
-
-            <Typography variant="body1" sx={{ color: "#cbd5e1" }}>
-              From research papers to startups, the AI Lab is where ideas
-              transform into impactful innovations.
-            </Typography>
-          </Grid>
-
-          {/* Visualization Section */}
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{ display: "flex", justifyContent: "center" }}
-          >
-            <Box
-              sx={{
-                position: "relative",
-                width: 320,
-                height: 320,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {/* Center Core */}
-              <Box
-                sx={{
-                  width: 140,
-                  height: 140,
-                  borderRadius: "50%",
-                  background: "linear-gradient(135deg,#22c55e,#16a34a)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: 700,
-                  fontSize: 22,
-                  color: "#0f172a",
-                  boxShadow: "0 0 40px rgba(34,197,94,0.7)",
-                  zIndex: 2,
-                }}
-              >
-                AI Lab
-              </Box>
-
-              {/* Orbit Rings */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: 220,
-                  height: 220,
-                  borderRadius: "50%",
-                  border: "1.5px dashed rgba(34,197,94,0.4)",
-                  animation: `${rotateClockwise} 20s linear infinite`,
-                }}
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: 280,
-                  height: 280,
-                  borderRadius: "50%",
-                  border: "1.5px dashed rgba(34,197,94,0.25)",
-                  animation: `${rotateAntiClockwise} 35s linear infinite`,
-                }}
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: 340,
-                  height: 340,
-                  borderRadius: "50%",
-                  border: "1.5px dashed rgba(34,197,94,0.15)",
-                  animation: `${rotateClockwise} 50s linear infinite`,
-                }}
-              />
-
-              {/* Moving Nodes */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: 16,
-                  height: 16,
-                  borderRadius: "50%",
-                  background: "#22c55e",
-                  top: "10%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  boxShadow: "0 0 20px rgba(34,197,94,0.8)",
-                }}
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: 12,
-                  height: 12,
-                  borderRadius: "50%",
-                  background: "#22c55e",
-                  bottom: "15%",
-                  right: "20%",
-                  boxShadow: "0 0 15px rgba(34,197,94,0.7)",
-                }}
-              />
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: 14,
-                  height: 14,
-                  borderRadius: "50%",
-                  background: "#22c55e",
-                  top: "30%",
-                  left: "15%",
-                  boxShadow: "0 0 15px rgba(34,197,94,0.7)",
-                }}
-              />
             </Box>
-          </Grid>
-        </Grid>
-      </Container>
+          </Box>
+
+          {/* Right Content */}
+          <Box className={classes.content}>
+            <Typography variant="h2" className={classes.title}>
+              <span className={classes.highlight}>AI Lab</span> for the Next Big
+              Breakthrough
+            </Typography>
+            <Typography className={classes.description}>
+              Artificial Intelligence is no longer the future - it is the
+              present. At GigaLabs, our dedicated AI lab empowers learners and
+              researchers to explore AI-driven career tools, skill assessments,
+              and intelligent platforms. Whether it's resume optimization, AI
+              interviews, or adaptive learning paths, our work proves that
+              innovation labs can accelerate breakthroughs across industries.
+            </Typography>
+            <Button className={classes.cta} onClick={() => setOpen(true)}>
+              Explore AI Lab
+            </Button>
+          </Box>
+        </Box>
+      </section>
+
+      {/* Popup Modal */}
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box className={classes.modalContent}>
+          <Typography className={classes.popupTitle}>Apply Now</Typography>
+          <Typography className={classes.popupText}>
+            Thank you for your interest in GigaLabs! Join our innovation
+            community and start building the future with us.
+          </Typography>
+          <Button className={classes.popupButton} onClick={() => setOpen(false)}>
+            Get Started
+          </Button>
+        </Box>
+      </Modal>
     </Box>
   );
 }
