@@ -6,7 +6,8 @@ import { Zap, Target, Users, Check, X } from "lucide-react";
 
 const useStyles = makeStyles(() => ({
   root: {
-    minHeight: "700px",
+    // minHeight: "700px",
+    height: "auto",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

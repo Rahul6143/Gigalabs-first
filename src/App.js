@@ -9,7 +9,7 @@ import GigaPrescreener from './components/prescreen';
 import GigaLMSDashboard from './components/lms';
 import GigaSpace from './components/gigaspace';
 import WhyChooseAndAiLab from './components/whychose';
-import AILabSection from './components/ai.';
+import AILabSection from './components/ai';
 
 function App() {
   return (

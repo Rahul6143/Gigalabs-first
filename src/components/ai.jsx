@@ -183,7 +183,7 @@ const useStyles = makeStyles(() => ({
     border: "none",
     borderRadius: "50px !important",
     fontSize: "1.1rem",
-    fontWeight: 600,
+    fontWeight: '600 !important',
     cursor: "pointer",
     transition: "all 0.4s cubic-bezier(0.4,0,0.2,1)",
    boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
@@ -222,7 +222,7 @@ const useStyles = makeStyles(() => ({
   },
   popupButton: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
-    color: "#0f172a",
+    color: "#ffffffff !important",
     fontFamily: `"Space Grotesk", sans-serif`,
     padding: "12px 24px",
     border: "none",

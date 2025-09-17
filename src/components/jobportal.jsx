@@ -8,8 +8,9 @@ const useStyles = makeStyles({
   root: {
     background: "#060810 !important",
     color: "#ffffff",
-    minHeight: "700px",
-    paddingTop: "32px",
+    // minHeight: "700px",
+    height: "auto",
+    paddingTop: "80px !important",
     paddingBottom: "32px",
   },
   container: {
@@ -63,22 +64,24 @@ const useStyles = makeStyles({
   arrowsBox: {
     display: "flex",
     justifyContent: "center",
-    gap: "20px",
-    marginTop: "24px",
+    gap: "120px",
+    // marginTop: "24px",
   },
   arrowContainer: {
     "& svg": {
-      width: "80px",
-      height: "40px",
+      // width: "100px",
+      // height: "100px",
     },
   },
   cardBox: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     position: "relative",
     height: "200px",
-    marginTop: "32px",
+    // paddingTop: "-50px",
+    marginTop: "-32px",
+    
   },
   card: {
     position: "absolute",
@@ -110,6 +113,7 @@ const useStyles = makeStyles({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
+    marginBottom: "42px",
     maskImage:
       "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
     WebkitMaskImage:
@@ -202,7 +206,7 @@ const GigaJobPortal = () => {
           The GiGa Job Portal is a complete ecosystem for students and
           professionals aiming for career success. With thousands of jobs
           available across all domains, it brings opportunities from over 33
-          leading platforms in India— including Indeed, Naukri, Shine, and
+          leading platforms in India—including Indeed, Naukri, Shine, and
           Apna—all into one place. This ensures that learners and job seekers
           have diverse career options at their fingertips, without the need to
           navigate multiple websites.
@@ -217,7 +221,7 @@ const GigaJobPortal = () => {
                 current === index ? classes.featurePaperActive : ""
               }`}
             >
-              <i className={`fa-solid ${f.icon}`} className={classes.icon} />
+              <i className={`fa-solid ${f.icon} ${classes.icon}`} />
               {f.text}
             </Paper>
           ))}
@@ -225,18 +229,62 @@ const GigaJobPortal = () => {
 
         <Box className={classes.arrowsBox}>
           {cardsData.map((_, index) => (
-            <Box
-              key={index}
-              className={classes.arrowContainer}
-            >
-              <svg viewBox="0 0 80 40" fill="none">
-                <path
-                  d="M0 20 H70 L60 10 M70 20 L60 30"
-                  stroke={current === index ? "#4ade80" : "#555555"}
-                  strokeWidth="3"
-                  fill="none"
-                />
-              </svg>
+            <Box key={index} className={classes.arrowContainer}>
+              {index === 0 && (
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 309.9445661388727 232.21544479424125" width="120" height="100">
+                  <g strokeLinecap="round">
+                    <g transform="translate(21.075 10)">
+                      <path d="M0 0 C2.16 14.82, -33.54 53.57, 12.94 88.94 C59.41 124.3, 234.55 191.67, 278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M253.9 210.89 C262.45 211.34, 270.99 211.8, 278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M260.6 195.15 C266.85 200.99, 273.1 206.83, 278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                    </g>
+                  </g>
+                </svg>
+              )}
+              {index === 1 && (
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281.5041901698314 307.31977189286783" width="80" height="75">
+                  <g strokeLinecap="round">
+                    <g transform="translate(10 10)">
+                      <path d="M0 0 C43.58 47.89, 217.92 239.43, 261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M239.37 275.7 C247.66 280.05, 255.95 284.41, 261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M252.01 264.19 C255.57 272.85, 259.12 281.52, 261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                    </g>
+                  </g>
+                </svg>
+              )}
+              {index === 2 && (
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.059643361439157 348.2948698282619" width="20" height="75">
+                  <g strokeLinecap="round">
+                    <g transform="translate(10 10)">
+                      <path d="M0 0 C0.18 54.72, 0.88 273.58, 1.06 328.29"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M-7.57 304.83 C-4.24 313.88, -0.91 322.92, 1.06 328.29"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M9.53 304.78 C6.27 313.84, 3 322.91, 1.06 328.29"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                    </g>
+                  </g>
+                </svg>
+              )}
+              {index === 3 && (
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281.5041901698314 307.31977189286783" width="80" height="75">
+                  <g strokeLinecap="round">
+                    <g transform="translate(271.5 10)">
+                      <path d="M0 0 C-43.58 47.89, -217.92 239.43, -261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M-252.01 264.19 C-255.57 272.85, -259.12 281.52, -261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M-239.37 275.7 C-247.66 280.05, -255.95 284.41, -261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                    </g>
+                  </g>
+                </svg>
+              )}
+              {index === 4 && (
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 309.94456613887087 232.21544479424125" width="120" height="100">
+                  <g strokeLinecap="round">
+                    <g transform="translate(288.87 10)">
+                      <path d="M0 0 C-2.16 14.82, 33.54 53.57, -12.94 88.94 C-59.41 124.3, -234.55 191.67, -278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M-260.6 195.15 C-266.85 200.99, -273.1 206.83, -278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path d="M-253.9 210.89 C-262.45 211.34, -270.99 211.8, -278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                    </g>
+                  </g>
+                </svg>
+              )}
             </Box>
           ))}
         </Box>
