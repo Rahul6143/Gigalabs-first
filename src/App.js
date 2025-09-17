@@ -10,6 +10,8 @@ import GigaLMSDashboard from './components/lms';
 import GigaSpace from './components/gigaspace';
 import WhyChooseAndAiLab from './components/whychose';
 import AILabSection from './components/ai';
+import GigaLabsFooter from './components/footer1';
+import GigaLabsBottom from './components/footer2';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
 
       <WhyChooseAndAiLab />
       <AILabSection />
+      <GigaLabsFooter/>
+      <GigaLabsBottom/>
     </div>
   );
 }
