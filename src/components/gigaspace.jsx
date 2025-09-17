@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Box,
   Typography,
   Avatar,
   Card,
   CardContent,
-  CardActions,
-  TextField,
   IconButton,
   Stack,
   Chip,
+  TextField,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import AddIcon from '@mui/icons-material/Add';
 import PersonIcon from '@mui/icons-material/Person';
+import MessageIcon from '@mui/icons-material/Message';
 import { makeStyles } from '@mui/styles';
 
-// Data definitions
+// Data for personalities
 const legendaryPersonalities = [
   {
     name: "Mahatma Gandhi",
@@ -52,6 +52,7 @@ const legendaryPersonalities = [
   }
 ];
 
+// Sample conversation data
 const sampleConversations = {
   "Mahatma Gandhi": [
     { type: "user", text: "How did you lead without modern tools?" },
@@ -79,10 +80,11 @@ const sampleConversations = {
   ]
 };
 
-// Styles
+// Styles using makeStyles
 const useStyles = makeStyles({
   container: {
-    minHeight: '700px',
+    // minHeight: '700px',
+    height: 'auto',
     padding: '24px',
     alignItems: 'center !important',
     backgroundColor: 'transparent',
@@ -111,6 +113,7 @@ const useStyles = makeStyles({
     backgroundColor: 'rgba(255,255,255,0.05) !important',
     border: '1px solid rgba(255,255,255,0.2)',
     backdropFilter: 'blur(10px)',
+    borderRadius: '16px !important',
     cursor: 'pointer',
     transition: 'transform 0.3s',
     marginBottom: '8px',
@@ -122,6 +125,7 @@ const useStyles = makeStyles({
   selectedCard: {
     backgroundColor: 'rgba(255,255,255,0.1) !important',
     border: '1px solid rgba(255,255,255,0.2)',
+    borderRadius: '16px !important',
     backdropFilter: 'blur(10px)',
     cursor: 'pointer',
     transition: 'transform 0.3s',
@@ -166,9 +170,10 @@ const useStyles = makeStyles({
   chatCard: {
     display: 'flex',
     flexDirection: 'column',
-    height: '500px',
+    height: '100%',
     backgroundColor: 'rgba(255,255,255,0.05) !important',
     backdropFilter: 'blur(10px)',
+    borderRadius: '16px !important',
     border: '1px solid rgba(255,255,255,0.2) !important',
   },
   chatHeader: {
@@ -178,6 +183,7 @@ const useStyles = makeStyles({
   },
   chatContent: {
     flex: '1 1 auto',
+    // backgroundColor: 'rgba(0,0,0,0.1) !important',
     overflowY: 'auto',
     padding: '16px',
     transition: 'opacity 0.5s ease-in-out',
@@ -189,7 +195,7 @@ const useStyles = makeStyles({
     flexDirection: 'row',
   },
   messageBoxUser: {
-    backgroundColor: '#3b82f6',
+    background: 'linear-gradient(to right, #3b82f6, #9333ea) !important',
     color: '#ffffff',
     borderRadius: '8px',
     padding: '12px !important',
@@ -202,7 +208,6 @@ const useStyles = makeStyles({
     padding: '12px',
     maxWidth: '80%',
   },
-
   textFieldRoot: {
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
@@ -230,27 +235,42 @@ export default function GigaSpace() {
   const [chatMessages, setChatMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
 
+  const messageTimeouts = useRef([]);
+
+  // Load messages with typing effect
   useEffect(() => {
-    loadSampleConversation();
+    messageTimeouts.current.forEach(timeoutId => clearTimeout(timeoutId));
+    messageTimeouts.current = [];
+
+    setChatMessages([]); // Reset chat messages
+
+    const messages = sampleConversations[selectedPersonality.name] || [];
+    messages.forEach((msg, i) => {
+      const timeoutId = setTimeout(() => {
+        setChatMessages((prev) => [...prev, msg]);
+      }, i * 2000);
+      messageTimeouts.current.push(timeoutId);
+    });
+
+    return () => {
+      messageTimeouts.current.forEach(timeoutId => clearTimeout(timeoutId));
+      messageTimeouts.current = [];
+    };
   }, [selectedPersonality]);
 
-  const loadSampleConversation = () => {
-    const messages = sampleConversations[selectedPersonality.name] || [];
-    setChatMessages(messages);
-  };
+  // Auto-switch personalities every 3 seconds
   useEffect(() => {
-  const interval = setInterval(() => {
-    setSelectedPersonality((prev) => {
-      const currentIndex = legendaryPersonalities.findIndex(p => p.name === prev.name);
-      const nextIndex = (currentIndex + 1) % legendaryPersonalities.length;
-      return legendaryPersonalities[nextIndex];
-    });
-  }, 3000);
+    const interval = setInterval(() => {
+      setSelectedPersonality((prev) => {
+        const currentIndex = legendaryPersonalities.findIndex(p => p.name === prev.name);
+        const nextIndex = (currentIndex + 1) % legendaryPersonalities.length;
+        return legendaryPersonalities[nextIndex];
+      });
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
-  return () => clearInterval(interval);
-}, []);
-
-
+  // Handle sending messages
   const sendMessage = () => {
     if (!messageInput.trim()) return;
     const newMessage = { type: 'user', text: messageInput };
@@ -283,9 +303,10 @@ export default function GigaSpace() {
         </Stack>
       </Box>
 
-      <Box display="flex" flexDirection="row" width="100%" gap="16px" flexWrap="wrap" justifyContent="center">
-        <Box flex="1" minWidth="300px">
-          <Stack spacing={2}>
+      <Box display="flex" flexDirection="row" width="100%" gap="16px" flexWrap="wrap" justifyContent="center" alignItems="stretch">
+        {/* Left Panel */}
+        <Box flex="1" minWidth="300px" display="flex" flexDirection="column">
+          <Stack spacing={2} flex="1">
             {legendaryPersonalities.map((personality, index) => (
               <Card
                 key={index}
@@ -315,7 +336,7 @@ export default function GigaSpace() {
                       </Typography>
                     </Box>
                     <IconButton className={classes.iconButton}>
-                      <SendIcon style={{ color: '#ffffff' }} />
+                      <MessageIcon style={{ color: '#ffffff' }} />
                     </IconButton>
                   </Box>
                   {selectedPersonality.name === personality.name && (
@@ -331,7 +352,8 @@ export default function GigaSpace() {
           </Stack>
         </Box>
 
-        <Box flex="1" minWidth="300px">
+        {/* Right Panel */}
+        <Box flex="1" minWidth="300px" display="flex" flexDirection="column">
           <Card className={classes.chatCard}>
             <Box className={classes.chatHeader}>
               <Box display="flex" flexDirection="row" alignItems="center" gap="16px">

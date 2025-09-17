@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 import React from "react";
 import {
   Container,
@@ -19,7 +20,8 @@ import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 
 const useStyles = makeStyles({
   root: {
-    minHeight: "700px",
+    // minHeight: "700px",
+    height: "auto",
     backgroundColor: "#f9fafb",
     paddingBottom: "48px",
   },
@@ -67,18 +69,20 @@ const useStyles = makeStyles({
     color: "#ffffff",
     position: "relative",
     overflow: "visible",
-    marginLeft: "-128px",
-    marginRight: "-128px",
+    marginLeft: "-4px !important",
+    marginRight: "-4px !important",
+    paddingBottom: "48px",
   },
   howItWorksTitle: {
     fontWeight: 800,
     textAlign: "center",
     marginBottom: "8px",
+    fontWeight: '700 !important',
   },
   howItWorksDesc: {
     textAlign: "center",
     color: "rgba(255,255,255,0.9)",
-    marginBottom: "40px",
+    marginBottom: "20px !important",
   },
   stepsContainer: {
     position: "relative",
@@ -148,12 +152,13 @@ const useStyles = makeStyles({
     marginTop: "24px",
   },
   startButton: {
-    borderRadius: "30px",
-    padding: "12px 40px",
+    borderRadius: "30px !important",
+    fontSize: "0.9rem !important",
+    padding: "12px 24px !important",
     background: "linear-gradient(90deg, #7e22ce 0%, #6b46c1 100%)",
     boxShadow: "0 10px 30px rgba(107,70,193,0.18), inset 0 -3px 6px rgba(0,0,0,0.08)",
     textTransform: "none",
-    fontWeight: 700,
+    fontWeight: '700 !important',
     "&:hover": {
       background: "linear-gradient(90deg, #6b46c1 0%, #4c1d95 100%)",
     },

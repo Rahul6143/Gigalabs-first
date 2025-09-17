@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     backgroundColor: "#f9fafb", // grey.50
     paddingTop: "80px !important",
     paddingBottom: "64px !important",
+    height: "auto",
     paddingLeft: "80px !important",
     paddingRight: "64px !important",
     '@media (min-width:960px)': {
