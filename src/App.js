@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 // import './App.css';
 
 import Navbar from './components/Navbar';
@@ -12,6 +12,7 @@ import WhyChooseAndAiLab from './components/whychose';
 import AILabSection from './components/ai';
 import GigaLabsFooter from './components/footer1';
 import GigaLabsBottom from './components/footer2';
+import Innovations from './components/card';
 
 function App() {
   return (
@@ -41,11 +42,12 @@ function App() {
       <section id="prescreen" >
         <GigaPrescreener />
       </section>
-
+      <Innovations />
       <WhyChooseAndAiLab />
       <AILabSection />
       <GigaLabsFooter/>
       <GigaLabsBottom/>
+      
     </div>
   );
 }
