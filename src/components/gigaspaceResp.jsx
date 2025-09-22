@@ -151,6 +151,10 @@ const useStyles = makeStyles({
       transform: 'translateY(-2px)',
       backgroundColor: 'rgba(255,255,255,0.15) !important',
     },
+    '@media (max-width: 480px)': {
+      // fontSize: '0.75rem',
+      display: 'none',
+    },
   },
   selectedCard: {
     backgroundColor: 'rgba(255,255,255,0.1) !important',

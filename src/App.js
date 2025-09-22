@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 
-import Navbar from './components/Navbar';
+
 // import HeroSection from './components/hero';
 // import ResumeBuilder from './components/resume-builder';
 // import GigaJobPortal from './components/jobportal';
@@ -13,6 +13,8 @@ import Navbar from './components/Navbar';
 // import GigaLabsFooter from './components/footer1';
 // import GigaLabsBottom from './components/footer2';
 // import Innovations from './components/card';
+
+// import Navbar from './components/Navbar';
 import HeroSection1 from './components/heroResp.jsx';
 import ResumeBuilder1 from './components/resumeResp.jsx';
 import GigaJobPortal1 from './components/jobResp.jsx';
@@ -27,7 +29,7 @@ import GigaLabsBottom1 from './components/footer2Resp.jsx';
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <HeroSection1/>
       <ResumeBuilder1/>
       <GigaJobPortal1/>

@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     color: "#9ca3af", // gray-400
     fontSize: "0.875rem",
     lineHeight: "1.5",
+    // paddingTop: "0.25rem",
   },
   link: {
     color: "#9ca3af !important",
@@ -52,8 +53,9 @@ const useStyles = makeStyles({
   },
   listItem: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "left !important",
     marginBottom: "0.5rem",
+    paddingLeft : '0 !important',
   },
   icon: {
     fontSize: "1rem",
@@ -142,10 +144,15 @@ export default function GigaLabsFooter1() {
           {/* Column 1: About */}
           <Box className={classes.column}>
             <Typography className={classes.heading}>About GigaLabs</Typography>
-            <Typography className={classes.text}>
-              GigaLabs is the innovation hub of Gigaversity, dedicated to creating
-              cutting-edge solutions that drive progress and transformation.
-            </Typography>
+            <List className={classes.list}>
+              <ListItem className={classes.listItem}>
+                <Typography className={classes.text}>
+                  GigaLabs is the innovation hub of Gigaversity, dedicated to creating
+                  cutting-edge solutions that drive progress and transformation.
+                </Typography>
+              </ListItem>
+            </List>
+            
           </Box>
 
           {/* Column 2: Quick Links */}

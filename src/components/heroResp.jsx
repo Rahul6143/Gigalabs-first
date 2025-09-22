@@ -27,6 +27,7 @@ const useStyles = makeStyles({
     opacity: 0.2,
     backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
     backgroundRepeat: "repeat",
+    zIndex: -2,
   },
 
   "@keyframes float": {
@@ -47,6 +48,7 @@ const useStyles = makeStyles({
     height: "40px !important",
     width: "40px !important",
     color: "#60a5fa",
+    zIndex : 1,
     animationDuration: "4s",
     animationDelay: "0s",
     animationName: "$float",
@@ -99,6 +101,7 @@ const useStyles = makeStyles({
     height: "40px !important",
     width: "40px !important",
     color: "#4ade80",
+    zIndex: 1,
     animationDuration: "4.8s",
     animationDelay: "0.8s",
     animationName: "$float",
@@ -224,6 +227,9 @@ const useStyles = makeStyles({
     heading2: {
       fontSize: "1.5rem !important",
     },
+    // icon5: {
+    //   zIndex: 0,
+    // },
     chipBadge: {
       fontSize: "0.85rem !important",
     },
@@ -236,6 +242,7 @@ const useStyles = makeStyles({
     subtitle: {
       padding: "1rem 1rem",
       fontSize: "0.95rem !important",
+      zIndex: '2 !important'
     },
     heading1: {
       fontSize: "1.7rem !important",
@@ -311,8 +318,9 @@ const HeroSection1 = () => {
             {[
               "Technology Innovations",
               "Research Labs",
-              "Product Development",
               "AI Lab",
+              "Product Development",
+              
             ].map((text, index) => (
               <Chip key={index} label={text} className={classes.featureChip} />
             ))}

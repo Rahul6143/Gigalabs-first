@@ -236,8 +236,9 @@ const HeroSection = () => {
             {[
               "Technology Innovations",
               "Research Labs",
-              "Product Development",
               "AI Lab",
+              "Product Development",
+              
             ].map((text, index) => (
               <Chip
                 key={index}
