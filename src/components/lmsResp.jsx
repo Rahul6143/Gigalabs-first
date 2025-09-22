@@ -85,10 +85,10 @@ const useStyles = makeStyles(() => ({
     "@media (max-width: 960px)": {
       flexDirection: "column",
       gap: "2rem",
-      padding: "0 1rem",
+      // padding: "0 1rem",
     },
     "@media (max-width: 600px)": {
-      gap: "1.5rem",
+      gap: "0.5rem",
     },
     "@media (max-width: 480px)": {
       gap: "1rem",
@@ -102,6 +102,7 @@ const useStyles = makeStyles(() => ({
     "@media (max-width:960px)": {
       order: 2,
     },
+    
   },
   featureList: {
     display: "flex",
@@ -109,6 +110,14 @@ const useStyles = makeStyles(() => ({
     gap: "1rem",
     flex: 1,
     position: "relative",
+    "@media (max-width: 1020px)": {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "0.8rem",
+    },
+    "@media (max-width: 600px)": {
+      gridTemplateColumns: "1fr",
+    },
   },
   card: {
     minHeight: "80px",

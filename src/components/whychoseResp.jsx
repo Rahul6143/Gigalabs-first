@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Box, Typography, Button, Paper } from "@mui/material";
-import { Zap, Target, Users, Check, X } from "lucide-react";
+import { Zap, Target, Users, Check, X, MarsIcon } from "lucide-react";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     background:
       "linear-gradient(135deg, #070712 0%, #111229 30%, #231f3a 70%, #2b2743 100%)",
     color: "#e6eef6",
+    position: "relative",
   },
 
   section: {
@@ -31,18 +32,17 @@ const useStyles = makeStyles(() => ({
       bottom: 0,
       background:
         "url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.03'%3E%3Cpath d='m40 0 20 20-20 20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\") repeat",
-      zIndex: 0,
     },
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background:
-        "radial-gradient(ellipse at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%)",
-    },
+    // "&::after": {
+    //   content: '""',
+    //   position: "absolute",
+    //   top: 0,
+    //   left: 0,
+    //   right: 0,
+    //   bottom: 0,
+    //   background:
+    //     "radial-gradient(ellipse at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%)",
+    // },
   },
 
   container: {
@@ -70,7 +70,8 @@ const useStyles = makeStyles(() => ({
       gap: "1.5rem",
     },
     "@media (max-width: 375px)": {
-      padding: "0 0.5rem",
+      padding: "0 0rem",
+      // fontSize: "0.2rem !important",
     },
   },
 
@@ -178,7 +179,7 @@ const useStyles = makeStyles(() => ({
       fontSize: "1.05rem",
     },
     "@media (max-width: 375px)": {
-      fontSize: "1rem",
+      fontSize: "0.9rem !important",
     },
   },
 
@@ -221,6 +222,7 @@ const useStyles = makeStyles(() => ({
     },
     "@media (max-width: 375px)": {
       padding: "1rem",
+      
     },
   },
 
@@ -239,6 +241,9 @@ const useStyles = makeStyles(() => ({
     "@media (max-width: 480px)": {
       fontSize: "0.9rem",
     },
+    "@media (max-width: 375px)": {
+      fontSize: "0.9rem !important",
+    },
   },
 
   comparisonGrid: {
@@ -248,10 +253,11 @@ const useStyles = makeStyles(() => ({
     marginTop: "1.5rem",
 
     "@media (max-width: 960px)": {
-      gridTemplateColumns: "1fr",
+      gridTemplateColumns: "1fr 1fr",
     },
     "@media (max-width: 600px)": {
       gap: "1rem",
+      alignItems: "center",
     },
   },
 
@@ -282,13 +288,14 @@ const useStyles = makeStyles(() => ({
     padding: "0.7rem",
     fontFamily: "Inter, sans-serif",
     fontSize: "1rem",
+    textAlign: "left",
     color: "#475569",
 
     "@media (max-width: 600px)": {
       fontSize: "0.95rem",
     },
     "@media (max-width: 375px)": {
-      fontSize: "0.9rem",
+      fontSize: "0.8rem",
     },
   },
 
@@ -370,7 +377,7 @@ export default function WhyChooseGigaLabs1() {
             <Paper className={classes.comparisonCard} elevation={0}>
               <Box textAlign="center">
                 <Typography className={classes.headerTitle}>
-                  GigaLabs vs Traditional Labs
+                  GigaLabs vs Other Labs
                 </Typography>
                 <Typography className={classes.comparisonSubtitle}>
                   See the difference in approach
@@ -402,7 +409,7 @@ export default function WhyChooseGigaLabs1() {
                   <Box
                     className={`${classes.columnHeader} ${classes.othersHeader}`}
                   >
-                    Traditional Labs
+                    Other Labs
                   </Box>
                   {[
                     "Academic papers only",

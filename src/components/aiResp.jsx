@@ -209,10 +209,10 @@ const useStyles = makeStyles(() => ({
     letterSpacing: "-0.02em",
     whiteSpace: "nowrap",
     "@media (max-width:1200px)": {
-      fontSize: "2.5rem !important",
+      fontSize: "2rem !important",
     },
     "@media (max-width:960px)": {
-      fontSize: "2.25rem !important",
+      fontSize: "2rem !important",
     },
     "@media (max-width:600px)": {
       fontSize: "2rem !important",
@@ -414,7 +414,7 @@ export default function AiLabSection1() {
           {/* Right Content */}
           <Box className={classes.content}>
             <Typography variant="h2" className={classes.title}>
-              <span className={classes.highlight}>AI Lab</span> for the Next Big
+              AI Lab for the Next Big
               Breakthrough
             </Typography>
             <Typography className={classes.description}>
