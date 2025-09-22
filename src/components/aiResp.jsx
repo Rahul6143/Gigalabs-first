@@ -1,3 +1,4 @@
+// AiLabSection.jsx
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Box, Typography, Button, Modal } from "@mui/material";
@@ -11,24 +12,28 @@ const useStyles = makeStyles(() => ({
     color: "#e2e8f0",
     lineHeight: 1.6,
     fontWeight: 400,
-    height:'auto',
+    height: "auto",
   },
   section: {
     padding: "8rem 2rem 6rem",
     background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
     position: "relative",
     overflow: "hidden",
-  },
-  sectionBefore: {
-    content: "''",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background:
-      "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\") repeat",
-    zIndex: 1,
+    "@media (max-width:1200px)": {
+      padding: "6rem 2rem 5rem",
+    },
+    "@media (max-width:960px)": {
+      padding: "5rem 1.5rem 4rem",
+    },
+    "@media (max-width:600px)": {
+      padding: "4rem 1rem 3rem",
+    },
+    "@media (max-width:480px)": {
+      padding: "3rem 1rem 2rem",
+    },
+    "@media (max-width:375px)": {
+      padding: "2.5rem 0.8rem 2rem",
+    },
   },
   container: {
     maxWidth: "1100px",
@@ -40,14 +45,33 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     position: "relative",
     zIndex: 2,
-    "@media (max-width:1024px)": {
+    "@media (max-width:1200px)": {
+      gap: "4rem",
+    },
+    "@media (max-width:960px)": {
       gridTemplateColumns: "1fr",
       gap: "3rem",
+    },
+    "@media (max-width:600px)": {
+      padding: "0 1rem",
+      gap: "2.5rem",
+    },
+    "@media (max-width:480px)": {
+      gap: "2rem",
+    },
+    "@media (max-width:375px)": {
+      padding: "0 0.5rem",
+      gap: "1.5rem",
     },
   },
   visual: {
     position: "relative",
     animation: "$slideInLeft 0.8s ease-out",
+    "@media (max-width:960px)": {
+      order: 2,
+      display: "flex",
+      justifyContent: "center",
+    },
   },
   visualization: {
     position: "relative",
@@ -56,17 +80,38 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    "@media (max-width:768px)": {
+    "@media (max-width:960px)": {
+      height: "350px",
+    },
+    "@media (max-width:600px)": {
       height: "300px",
+    },
+    "@media (max-width:480px)": {
+      height: "250px",
+    },
+    "@media (max-width:375px)": {
+      height: "220px",
     },
   },
   brainContainer: {
     position: "relative",
     width: "300px",
     height: "300px",
-    "@media (max-width:768px)": {
-      width: "250px",
-      height: "250px",
+    "@media (max-width:960px)": {
+      width: "260px",
+      height: "260px",
+    },
+    "@media (max-width:600px)": {
+      width: "230px",
+      height: "230px",
+    },
+    "@media (max-width:480px)": {
+      width: "200px",
+      height: "200px",
+    },
+    "@media (max-width:375px)": {
+      width: "180px",
+      height: "180px",
     },
   },
   orbit: {
@@ -80,7 +125,7 @@ const useStyles = makeStyles(() => ({
     height: "200px",
     top: "50px",
     left: "50px",
-    "@media (max-width:768px)": {
+    "@media (max-width:600px)": {
       width: "150px",
       height: "150px",
     },
@@ -91,7 +136,7 @@ const useStyles = makeStyles(() => ({
     top: "25px",
     left: "25px",
     animationDuration: "25s",
-    "@media (max-width:768px)": {
+    "@media (max-width:600px)": {
       width: "200px",
       height: "200px",
     },
@@ -102,7 +147,7 @@ const useStyles = makeStyles(() => ({
     top: 0,
     left: 0,
     animationDuration: "30s",
-    "@media (max-width:768px)": {
+    "@media (max-width:600px)": {
       width: "250px",
       height: "250px",
     },
@@ -113,7 +158,8 @@ const useStyles = makeStyles(() => ({
     height: "12px",
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
     borderRadius: "50%",
-   boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    boxShadow:
+      "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
     animation: "$nodeGlow 2s ease-in-out infinite alternate",
   },
   node1: { top: "-6px", left: "50%", transform: "translateX(-50%)" },
@@ -134,12 +180,24 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    boxShadow:
+      "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
     animation: "$pulse 3s ease-in-out infinite",
+    "@media (max-width:480px)": {
+      width: "65px",
+      height: "65px",
+    },
+    "@media (max-width:375px)": {
+      width: "55px",
+      height: "55px",
+    },
   },
   content: {
     color: "#0f172a",
     animation: "$slideInRight 0.8s ease-out",
+    "@media (max-width:960px)": {
+      textAlign: "center",
+    },
   },
   title: {
     fontFamily: `"Space Grotesk", sans-serif`,
@@ -150,16 +208,25 @@ const useStyles = makeStyles(() => ({
     color: "#0f172a",
     letterSpacing: "-0.02em",
     whiteSpace: "nowrap",
-    "@media (max-width:1024px)": {
-      fontSize: "2.5rem",
+    "@media (max-width:1200px)": {
+      fontSize: "2.5rem !important",
     },
-    "@media (max-width:768px)": {
-      fontSize: "2rem",
+    "@media (max-width:960px)": {
+      fontSize: "2.25rem !important",
+    },
+    "@media (max-width:600px)": {
+      fontSize: "2rem !important",
+    },
+    "@media (max-width:480px)": {
+      fontSize: "1.75rem !important",
+      whiteSpace: "normal",
+    },
+    "@media (max-width:375px)": {
+      fontSize: "1.5rem !important",
     },
   },
   highlight: {
-    background:
-      "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
+    background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     fontWeight: 800,
@@ -168,10 +235,23 @@ const useStyles = makeStyles(() => ({
     fontFamily: `"Inter", sans-serif`,
     fontSize: "1.2rem !important",
     fontWeight: 400,
-    lineHeight: '1.7 !important',
+    lineHeight: "1.7 !important",
     marginBottom: "3rem !important",
     color: "#64748b",
     letterSpacing: "-0.01em",
+    "@media (max-width:960px)": {
+      fontSize: "1.1rem !important",
+    },
+    "@media (max-width:600px)": {
+      fontSize: "1rem !important",
+      marginBottom: "2rem !important",
+    },
+    "@media (max-width:480px)": {
+      fontSize: "0.95rem !important",
+    },
+    "@media (max-width:375px)": {
+      fontSize: "0.9rem !important",
+    },
   },
   cta: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
@@ -181,13 +261,25 @@ const useStyles = makeStyles(() => ({
     border: "none",
     borderRadius: "50px !important",
     fontSize: "1.1rem",
-    fontWeight: '600 !important',
+    fontWeight: "600 !important",
     cursor: "pointer",
     transition: "all 0.4s cubic-bezier(0.4,0,0.2,1)",
-   boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    boxShadow:
+      "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
     "&:hover": {
       transform: "translateY(-3px) scale(1.05)",
-     boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    },
+    "@media (max-width:600px)": {
+      padding: "1rem 2.5rem !important",
+      fontSize: "1rem",
+    },
+    "@media (max-width:480px)": {
+      padding: "0.9rem 2rem !important",
+      fontSize: "0.95rem",
+    },
+    "@media (max-width:375px)": {
+      padding: "0.8rem 1.8rem !important",
+      fontSize: "0.9rem",
     },
   },
   modalContent: {
@@ -202,6 +294,14 @@ const useStyles = makeStyles(() => ({
     background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
     border: "2px solid rgba(148,163,184,0.2)",
     boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+    "@media (max-width:480px)": {
+      padding: "20px",
+      borderRadius: "15px",
+    },
+    "@media (max-width:375px)": {
+      padding: "15px",
+      borderRadius: "12px",
+    },
   },
   popupTitle: {
     color: "#0f172a",
@@ -210,6 +310,12 @@ const useStyles = makeStyles(() => ({
     marginBottom: "15px",
     fontSize: "1.8rem",
     letterSpacing: "-0.01em",
+    "@media (max-width:480px)": {
+      fontSize: "1.5rem",
+    },
+    "@media (max-width:375px)": {
+      fontSize: "1.3rem",
+    },
   },
   popupText: {
     color: "#475569",
@@ -217,6 +323,13 @@ const useStyles = makeStyles(() => ({
     marginBottom: "20px",
     lineHeight: 1.6,
     letterSpacing: "-0.01em",
+    fontSize: "1rem",
+    "@media (max-width:480px)": {
+      fontSize: "0.95rem",
+    },
+    "@media (max-width:375px)": {
+      fontSize: "0.9rem",
+    },
   },
   popupButton: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
@@ -230,7 +343,13 @@ const useStyles = makeStyles(() => ({
     transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
     "&:hover": {
       transform: "translateY(-2px)",
-      boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    },
+    "@media (max-width:480px)": {
+      padding: "10px 20px",
+    },
+    "@media (max-width:375px)": {
+      padding: "8px 18px",
+      fontSize: "0.9rem",
     },
   },
 
@@ -244,8 +363,14 @@ const useStyles = makeStyles(() => ({
     "50%": { transform: "translate(-50%, -50%) scale(1.1)" },
   },
   "@keyframes nodeGlow": {
-    "0%": { boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)", },
-    "100%": { boxShadow: "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)", },
+    "0%": {
+      boxShadow:
+        "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    },
+    "100%": {
+      boxShadow:
+        "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
+    },
   },
   "@keyframes slideInLeft": {
     from: { opacity: 0, transform: "translateX(-50px)" },
@@ -257,7 +382,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function AiLabSection() {
+export default function AiLabSection1() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -315,7 +440,10 @@ export default function AiLabSection() {
             Thank you for your interest in GigaLabs! Join our innovation
             community and start building the future with us.
           </Typography>
-          <Button className={classes.popupButton} onClick={() => setOpen(false)}>
+          <Button
+            className={classes.popupButton}
+            onClick={() => setOpen(false)}
+          >
             Get Started
           </Button>
         </Box>
