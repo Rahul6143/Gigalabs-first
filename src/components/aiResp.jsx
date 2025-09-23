@@ -19,21 +19,11 @@ const useStyles = makeStyles(() => ({
     background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)",
     position: "relative",
     overflow: "hidden",
-    "@media (max-width:1200px)": {
-      padding: "6rem 2rem 5rem",
-    },
-    "@media (max-width:960px)": {
-      padding: "5rem 1.5rem 4rem",
-    },
-    "@media (max-width:600px)": {
-      padding: "4rem 1rem 3rem",
-    },
-    "@media (max-width:480px)": {
-      padding: "3rem 1rem 2rem",
-    },
-    "@media (max-width:375px)": {
-      padding: "2.5rem 0.8rem 2rem",
-    },
+    "@media (max-width:1200px)": { padding: "6rem 2rem 5rem" },
+    "@media (max-width:960px)": { padding: "5rem 1.5rem 4rem" },
+    "@media (max-width:600px)": { padding: "4rem 1rem 3rem" },
+    "@media (max-width:480px)": { padding: "3rem 1rem 2rem" },
+    "@media (max-width:375px)": { padding: "2.5rem 0.8rem 2rem" },
   },
   container: {
     maxWidth: "1100px",
@@ -45,24 +35,11 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     position: "relative",
     zIndex: 2,
-    "@media (max-width:1200px)": {
-      gap: "4rem",
-    },
-    "@media (max-width:960px)": {
-      gridTemplateColumns: "1fr",
-      gap: "3rem",
-    },
-    "@media (max-width:600px)": {
-      padding: "0 1rem",
-      gap: "2.5rem",
-    },
-    "@media (max-width:480px)": {
-      gap: "2rem",
-    },
-    "@media (max-width:375px)": {
-      padding: "0 0.5rem",
-      gap: "1.5rem",
-    },
+    "@media (max-width:1200px)": { gap: "4rem" },
+    "@media (max-width:960px)": { gridTemplateColumns: "1fr", gap: "3rem" },
+    "@media (max-width:600px)": { padding: "0 1rem", gap: "2.5rem" },
+    "@media (max-width:480px)": { gap: "2rem" },
+    "@media (max-width:375px)": { padding: "0 0.5rem", gap: "1.5rem" },
   },
   visual: {
     position: "relative",
@@ -80,77 +57,45 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    "@media (max-width:960px)": {
-      height: "350px",
-    },
-    "@media (max-width:600px)": {
-      height: "300px",
-    },
-    "@media (max-width:480px)": {
-      height: "250px",
-    },
-    "@media (max-width:375px)": {
-      height: "220px",
-    },
+    "@media (max-width:960px)": { height: "350px" },
+    "@media (max-width:600px)": { height: "300px" },
+    "@media (max-width:480px)": { height: "250px" },
+    "@media (max-width:375px)": { height: "220px" },
   },
   brainContainer: {
     position: "relative",
     width: "300px",
     height: "300px",
-    "@media (max-width:960px)": {
-      width: "260px",
-      height: "260px",
-    },
-    "@media (max-width:600px)": {
-      width: "230px",
-      height: "230px",
-    },
-    "@media (max-width:480px)": {
-      width: "200px",
-      height: "200px",
-    },
-    "@media (max-width:375px)": {
-      width: "180px",
-      height: "180px",
-    },
+    "@media (max-width:960px)": { width: "260px", height: "260px" },
+    "@media (max-width:600px)": { width: "230px", height: "230px" },
+    "@media (max-width:480px)": { width: "200px", height: "200px" },
+    "@media (max-width:375px)": { width: "180px", height: "180px" },
   },
   orbit: {
     position: "absolute",
     border: "2px solid rgba(59,130,246,0.3)",
     borderRadius: "50%",
     animation: "$spin 20s linear infinite",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)", // ✅ keeps orbit centered
   },
   orbit1: {
     width: "200px",
     height: "200px",
-    top: "50px",
-    left: "50px",
-    "@media (max-width:600px)": {
-      width: "150px",
-      height: "150px",
-    },
+    "@media (max-width:600px)": { width: "150px", height: "150px" },
   },
   orbit2: {
     width: "250px",
     height: "250px",
-    top: "25px",
-    left: "25px",
     animationDuration: "25s",
-    "@media (max-width:600px)": {
-      width: "200px",
-      height: "200px",
-    },
+    "@media (max-width:600px)": { width: "200px", height: "200px" },
   },
   orbit3: {
     width: "300px",
     height: "300px",
-    top: 0,
-    left: 0,
     animationDuration: "30s",
-    "@media (max-width:600px)": {
-      width: "250px",
-      height: "250px",
-    },
+    "@media (max-width:600px)": { width: "250px", height: "250px" },
   },
   node: {
     position: "absolute",
@@ -183,21 +128,13 @@ const useStyles = makeStyles(() => ({
     boxShadow:
       "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
     animation: "$pulse 3s ease-in-out infinite",
-    "@media (max-width:480px)": {
-      width: "65px",
-      height: "65px",
-    },
-    "@media (max-width:375px)": {
-      width: "55px",
-      height: "55px",
-    },
+    "@media (max-width:480px)": { width: "65px", height: "65px" },
+    "@media (max-width:375px)": { width: "55px", height: "55px" },
   },
   content: {
     color: "#0f172a",
     animation: "$slideInRight 0.8s ease-out",
-    "@media (max-width:960px)": {
-      textAlign: "center",
-    },
+    "@media (max-width:960px)": { textAlign: "center" },
   },
   title: {
     fontFamily: `"Space Grotesk", sans-serif`,
@@ -208,22 +145,14 @@ const useStyles = makeStyles(() => ({
     color: "#0f172a",
     letterSpacing: "-0.02em",
     whiteSpace: "nowrap",
-    "@media (max-width:1200px)": {
-      fontSize: "2rem !important",
-    },
-    "@media (max-width:960px)": {
-      fontSize: "2rem !important",
-    },
-    "@media (max-width:600px)": {
-      fontSize: "2rem !important",
-    },
+    "@media (max-width:1200px)": { fontSize: "2rem !important" },
+    "@media (max-width:960px)": { fontSize: "2rem !important" },
+    "@media (max-width:600px)": { fontSize: "2rem !important" },
     "@media (max-width:480px)": {
       fontSize: "1.75rem !important",
       whiteSpace: "normal",
     },
-    "@media (max-width:375px)": {
-      fontSize: "1.5rem !important",
-    },
+    "@media (max-width:375px)": { fontSize: "1.5rem !important" },
   },
   highlight: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
@@ -239,19 +168,13 @@ const useStyles = makeStyles(() => ({
     marginBottom: "3rem !important",
     color: "#64748b",
     letterSpacing: "-0.01em",
-    "@media (max-width:960px)": {
-      fontSize: "1.1rem !important",
-    },
+    "@media (max-width:960px)": { fontSize: "1.1rem !important" },
     "@media (max-width:600px)": {
       fontSize: "1rem !important",
       marginBottom: "2rem !important",
     },
-    "@media (max-width:480px)": {
-      fontSize: "0.95rem !important",
-    },
-    "@media (max-width:375px)": {
-      fontSize: "0.9rem !important",
-    },
+    "@media (max-width:480px)": { fontSize: "0.95rem !important" },
+    "@media (max-width:375px)": { fontSize: "0.9rem !important" },
   },
   cta: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
@@ -266,9 +189,7 @@ const useStyles = makeStyles(() => ({
     transition: "all 0.4s cubic-bezier(0.4,0,0.2,1)",
     boxShadow:
       "0 0 30px rgba(59,130,246,0.5), 0 0 60px rgba(147,51,234,0.4)",
-    "&:hover": {
-      transform: "translateY(-3px) scale(1.05)",
-    },
+    "&:hover": { transform: "translateY(-3px) scale(1.05)" },
     "@media (max-width:600px)": {
       padding: "1rem 2.5rem !important",
       fontSize: "1rem",
@@ -294,14 +215,8 @@ const useStyles = makeStyles(() => ({
     background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
     border: "2px solid rgba(148,163,184,0.2)",
     boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
-    "@media (max-width:480px)": {
-      padding: "20px",
-      borderRadius: "15px",
-    },
-    "@media (max-width:375px)": {
-      padding: "15px",
-      borderRadius: "12px",
-    },
+    "@media (max-width:480px)": { padding: "20px", borderRadius: "15px" },
+    "@media (max-width:375px)": { padding: "15px", borderRadius: "12px" },
   },
   popupTitle: {
     color: "#0f172a",
@@ -310,12 +225,8 @@ const useStyles = makeStyles(() => ({
     marginBottom: "15px",
     fontSize: "1.8rem",
     letterSpacing: "-0.01em",
-    "@media (max-width:480px)": {
-      fontSize: "1.5rem",
-    },
-    "@media (max-width:375px)": {
-      fontSize: "1.3rem",
-    },
+    "@media (max-width:480px)": { fontSize: "1.5rem" },
+    "@media (max-width:375px)": { fontSize: "1.3rem" },
   },
   popupText: {
     color: "#475569",
@@ -324,12 +235,8 @@ const useStyles = makeStyles(() => ({
     lineHeight: 1.6,
     letterSpacing: "-0.01em",
     fontSize: "1rem",
-    "@media (max-width:480px)": {
-      fontSize: "0.95rem",
-    },
-    "@media (max-width:375px)": {
-      fontSize: "0.9rem",
-    },
+    "@media (max-width:480px)": { fontSize: "0.95rem" },
+    "@media (max-width:375px)": { fontSize: "0.9rem" },
   },
   popupButton: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
@@ -341,22 +248,15 @@ const useStyles = makeStyles(() => ({
     cursor: "pointer",
     fontWeight: 600,
     transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
-    "&:hover": {
-      transform: "translateY(-2px)",
-    },
-    "@media (max-width:480px)": {
-      padding: "10px 20px",
-    },
-    "@media (max-width:375px)": {
-      padding: "8px 18px",
-      fontSize: "0.9rem",
-    },
+    "&:hover": { transform: "translateY(-2px)" },
+    "@media (max-width:480px)": { padding: "10px 20px" },
+    "@media (max-width:375px)": { padding: "8px 18px", fontSize: "0.9rem" },
   },
 
   /* Animations */
   "@keyframes spin": {
-    from: { transform: "rotate(0deg)" },
-    to: { transform: "rotate(360deg)" },
+    from: { transform: "translate(-50%, -50%) rotate(0deg)" },
+    to: { transform: "translate(-50%, -50%) rotate(360deg)" },
   },
   "@keyframes pulse": {
     "0%,100%": { transform: "translate(-50%, -50%) scale(1)" },
@@ -414,8 +314,7 @@ export default function AiLabSection1() {
           {/* Right Content */}
           <Box className={classes.content}>
             <Typography variant="h2" className={classes.title}>
-              AI Lab for the Next Big
-              Breakthrough
+              AI Lab for the Next Big Breakthrough
             </Typography>
             <Typography className={classes.description}>
               Artificial Intelligence is no longer the future - it is the
