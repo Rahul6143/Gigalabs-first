@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     background: "linear-gradient(to bottom right, #312e81, #581c87, #9d174d)",
     position: "relative",
     alignItems: "center",
+    zIndex: 1,
   },
   pattern: {
     position: "relative",
@@ -40,6 +41,7 @@ const useStyles = makeStyles({
     animationName: "$float",
     animationIterationCount: "infinite",
     animationTimingFunction: "ease-in-out",
+    zIndex: -1,
   },
   icon1: {
     position: "absolute",
@@ -47,8 +49,8 @@ const useStyles = makeStyles({
     left: 80,
     height: "40px !important",
     width: "40px !important",
-    color: "#60a5fa",
-    zIndex : 1,
+    color: "#60a5faad",
+    zIndex : -1,
     animationDuration: "4s",
     animationDelay: "0s",
     animationName: "$float",
@@ -61,7 +63,8 @@ const useStyles = makeStyles({
     right: 160,
     height: "40px !important",
     width: "40px !important",
-    color: "#a78bfa",
+    zIndex: -1,
+    color: "#a78bfaad",
     animationDuration: "5s",
     animationDelay: "1s",
     animationName: "$float",
@@ -74,7 +77,8 @@ const useStyles = makeStyles({
     left: "33%",
     height: "40px !important",
     width: "40px !important",
-    color: "#facc15",
+    zIndex: -1,
+    color: "#facc15ad",
     animationDuration: "4.5s",
     animationDelay: "0.5s",
     animationName: "$float",
@@ -87,7 +91,8 @@ const useStyles = makeStyles({
     right: 80,
     height: "40px !important",
     width: "40px !important",
-    color: "#f97316",
+    zIndex: -1,
+    color: "#f97316ad",
     animationDuration: "5.2s",
     animationDelay: "0.2s",
     animationName: "$float",
@@ -100,8 +105,8 @@ const useStyles = makeStyles({
     left: 160,
     height: "40px !important",
     width: "40px !important",
-    color: "#4ade80",
-    zIndex: 1,
+    color: "#4ade80ad",
+    zIndex: -1,
     animationDuration: "4.8s",
     animationDelay: "0.8s",
     animationName: "$float",
@@ -199,7 +204,12 @@ const useStyles = makeStyles({
     heading2: {
       fontSize: "2rem !important",
     },
+    icon5: {
+      top: 280,
+      left: 130,
+    },
   },
+  
   "@media (max-width: 960px)": {
     subtitle: {
       padding: "1rem 4rem",
@@ -215,6 +225,10 @@ const useStyles = makeStyles({
       padding: "14px 36px !important",
       fontSize: "1rem !important",
     },
+    icon5: {
+      top: 250,
+      left: 90,
+    },
   },
   "@media (max-width: 600px)": {
     subtitle: {
@@ -227,9 +241,22 @@ const useStyles = makeStyles({
     heading2: {
       fontSize: "1.5rem !important",
     },
-    // icon5: {
-    //   zIndex: 0,
-    // },
+    icon1: {
+      top: 70,
+      left: 40,
+    },
+    icon2: {
+      top: 110,
+      right: 40,
+    },
+    icon3: {
+      top: 150,
+      left: 60,
+    },
+    icon5: {
+      top: 220,
+      left: 60,
+    },
     chipBadge: {
       fontSize: "0.85rem !important",
     },
@@ -255,7 +282,7 @@ const useStyles = makeStyles({
       fontSize: "0.95rem !important",
     },
   },
-  "@media (max-width: 375px)": {
+  "@media (max-width: 380px)": {
     subtitle: {
       padding: "0.5rem 0.8rem",
       fontSize: "0.9rem !important",
@@ -269,6 +296,14 @@ const useStyles = makeStyles({
     featureChip: {
       fontSize: "0.75rem !important",
       padding: "8px 10px !important",
+    },
+    icon2: {
+      top: 135,
+      right: 20, 
+    },
+    icon4: {
+      top: 180,
+      right: 40,
     },
     button: {
       padding: "10px 20px !important",

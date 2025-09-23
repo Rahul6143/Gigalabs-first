@@ -2,19 +2,22 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Box, Typography, Button, Paper } from "@mui/material";
-import { Zap, Target, Users, Check, X, MarsIcon } from "lucide-react";
+import { Zap, Target, Users, Check, X } from "lucide-react";
 
 const useStyles = makeStyles(() => ({
   root: {
     height: "auto",
     display: "flex",
-    alignItems: "center",
+    alignItems: "center !important",
     justifyContent: "center",
     fontFamily: "Inter, sans-serif",
     background:
       "linear-gradient(135deg, #070712 0%, #111229 30%, #231f3a 70%, #2b2743 100%)",
     color: "#e6eef6",
     position: "relative",
+    "@media (max-width: 375px)": {
+      alignItems: "center !important",
+    },
   },
 
   section: {
@@ -33,49 +36,51 @@ const useStyles = makeStyles(() => ({
       background:
         "url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322c55e' fill-opacity='0.03'%3E%3Cpath d='m40 0 20 20-20 20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\") repeat",
     },
-    // "&::after": {
-    //   content: '""',
-    //   position: "absolute",
-    //   top: 0,
-    //   left: 0,
-    //   right: 0,
-    //   bottom: 0,
-    //   background:
-    //     "radial-gradient(ellipse at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%)",
-    // },
   },
 
   container: {
-    maxWidth: 1300,
-    margin: "0 auto",
+    margin: "0 -1rem",
     padding: "0 2rem",
     position: "relative",
-    display: "grid",
-    gridTemplateColumns: "1.1fr 0.9fr",
-    gap: "3rem",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
+    gap: "3rem",
 
     "@media (max-width: 1200px)": {
       gap: "2rem",
       padding: "0 1.5rem",
     },
     "@media (max-width: 960px)": {
-      gridTemplateColumns: "1fr",
+      flexDirection: "column",
       textAlign: "center",
+      alignItems: "center",
     },
     "@media (max-width: 600px)": {
-      padding: "0 1rem",
+      padding: "1 1rem",
     },
     "@media (max-width: 480px)": {
       gap: "1.5rem",
+      padding: "0 1rem",
     },
     "@media (max-width: 375px)": {
-      padding: "0 0rem",
-      // fontSize: "0.2rem !important",
+      width: "100%",
+      padding: "0 1rem", // ✅ prevent content from hugging left
+      
     },
   },
 
-  // Title
+  column: {
+    flex: "1 1 50%", // ✅ equal width
+    maxWidth: "50%",
+
+    "@media (max-width: 960px)": {
+      maxWidth: "100%",
+      flex: "1 1 100%",
+    },
+  },
+
   title: {
     fontFamily: "Space Grotesk, sans-serif",
     fontSize: "2.8rem !important",
@@ -222,7 +227,6 @@ const useStyles = makeStyles(() => ({
     },
     "@media (max-width: 375px)": {
       padding: "1rem",
-      
     },
   },
 
@@ -232,6 +236,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: "800 !important",
     color: "#0f172a",
     marginBottom: 6,
+    "@media (max-width: 375px)": {
+      fontSize: "1rem !important",
+    },
   },
 
   comparisonSubtitle: {
@@ -242,7 +249,7 @@ const useStyles = makeStyles(() => ({
       fontSize: "0.9rem",
     },
     "@media (max-width: 375px)": {
-      fontSize: "0.9rem !important",
+      fontSize: "0.7rem !important",
     },
   },
 
@@ -259,6 +266,7 @@ const useStyles = makeStyles(() => ({
       gap: "1rem",
       alignItems: "center",
     },
+    
   },
 
   columnHeader: {
@@ -295,7 +303,7 @@ const useStyles = makeStyles(() => ({
       fontSize: "0.95rem",
     },
     "@media (max-width: 375px)": {
-      fontSize: "0.8rem",
+      fontSize: "0.65rem",
     },
   },
 
@@ -317,7 +325,7 @@ export default function WhyChooseGigaLabs1() {
       <Box className={classes.section}>
         <Box className={classes.container}>
           {/* Left */}
-          <Box>
+          <Box className={classes.column}>
             <Typography className={classes.title}>
               Why Choose{" "}
               <Box component="span" className={classes.highlight}>
@@ -373,7 +381,7 @@ export default function WhyChooseGigaLabs1() {
           </Box>
 
           {/* Right */}
-          <Box>
+          <Box className={classes.column}>
             <Paper className={classes.comparisonCard} elevation={0}>
               <Box textAlign="center">
                 <Typography className={classes.headerTitle}>
