@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
   },
   brainContainer: {
     position: "relative",
-    width: "300px",
+    width: "240px",
     height: "300px",
     "@media (max-width:960px)": { width: "260px", height: "260px" },
     "@media (max-width:600px)": { width: "230px", height: "230px" },
@@ -136,30 +136,35 @@ const useStyles = makeStyles(() => ({
     animation: "$slideInRight 0.8s ease-out",
     "@media (max-width:960px)": { textAlign: "center" },
   },
+
+  /* ✅ TITLE font sizes */
   title: {
     fontFamily: `"Space Grotesk", sans-serif`,
-    fontSize: "2.75rem !important",
-    fontWeight: 700,
+    fontSize: "2.8rem !important",
+    fontWeight: "700 !important",
     lineHeight: 1.2,
     marginBottom: "1.5rem !important",
     color: "#0f172a",
     letterSpacing: "-0.02em",
     whiteSpace: "nowrap",
-    "@media (max-width:1200px)": { fontSize: "2rem !important" },
-    "@media (max-width:960px)": { fontSize: "2rem !important" },
-    "@media (max-width:600px)": { fontSize: "2rem !important" },
+    "@media (max-width:1200px)": { fontSize: "2.5rem !important" },
+    "@media (max-width:960px)": { fontSize: "2.2rem !important" },
+    "@media (max-width:600px)": { fontSize: "1.9rem !important" },
     "@media (max-width:480px)": {
-      fontSize: "1.75rem !important",
+      fontSize: "1.7rem !important",
       whiteSpace: "normal",
     },
     "@media (max-width:375px)": { fontSize: "1.5rem !important" },
   },
+
   highlight: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     fontWeight: 800,
   },
+
+  /* ✅ DESCRIPTION font sizes */
   description: {
     fontFamily: `"Inter", sans-serif`,
     fontSize: "1.2rem !important",
@@ -168,14 +173,16 @@ const useStyles = makeStyles(() => ({
     marginBottom: "3rem !important",
     color: "#64748b",
     letterSpacing: "-0.01em",
-    "@media (max-width:960px)": { fontSize: "1.1rem !important" },
+    "@media (max-width:1200px)": { fontSize: "1.1rem !important" },
+    "@media (max-width:960px)": { fontSize: "1rem !important" },
     "@media (max-width:600px)": {
-      fontSize: "1rem !important",
+      fontSize: "0.95rem !important",
       marginBottom: "2rem !important",
     },
-    "@media (max-width:480px)": { fontSize: "0.95rem !important" },
-    "@media (max-width:375px)": { fontSize: "0.9rem !important" },
+    "@media (max-width:480px)": { fontSize: "0.9rem !important" },
+    "@media (max-width:375px)": { fontSize: "0.85rem !important" },
   },
+
   cta: {
     background: "linear-gradient(135deg, #3b82f6 0%, #9333ea 100%)",
     color: "#ffffff !important",

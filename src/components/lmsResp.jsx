@@ -66,11 +66,9 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "#f9fafb",
     height: "auto",
-    padding: "2rem 0 !important",
+    padding: "4rem 0 !important",
     display: "flex",
     justifyContent: "center",
-    paddingBottom: "4rem !important",
-    paddingTop: "4rem !important",
   },
   container: {
     display: "flex",
@@ -85,7 +83,6 @@ const useStyles = makeStyles(() => ({
     "@media (max-width: 960px)": {
       flexDirection: "column",
       gap: "2rem",
-      // padding: "0 1rem",
     },
     "@media (max-width: 600px)": {
       gap: "0.5rem",
@@ -102,7 +99,6 @@ const useStyles = makeStyles(() => ({
     "@media (max-width:960px)": {
       order: 2,
     },
-    
   },
   featureList: {
     display: "flex",
@@ -175,57 +171,63 @@ const useStyles = makeStyles(() => ({
   title: {
     fontWeight: "bold !important",
     marginBottom: "1rem !important",
-    fontSize: "2rem !important",
+    fontSize: "2.8rem !important",
     "@media (max-width: 1200px)": {
-      fontSize: "1.8rem !important",
+      fontSize: "2.5rem !important",
     },
     "@media (max-width: 960px)": {
-      fontSize: "1.6rem !important",
+      fontSize: "2.2rem !important",
     },
     "@media (max-width: 600px)": {
-      fontSize: "1.4rem !important",
+      fontSize: "1.9rem !important",
     },
     "@media (max-width: 480px)": {
-      fontSize: "1.2rem !important",
+      fontSize: "1.7rem !important",
     },
     "@media (max-width: 375px)": {
-      fontSize: "1rem !important",
+      fontSize: "1.5rem !important",
     },
   },
   description: {
     color: "#4b5563",
     marginBottom: "1rem !important",
     lineHeight: "1.7 !important",
-    fontSize: "1rem !important",
+    fontSize: "1.2rem !important",
+    "@media (max-width: 1200px)": {
+      fontSize: "1.1rem !important",
+    },
     "@media (max-width: 960px)": {
-      fontSize: "0.95rem !important",
+      fontSize: "1rem !important",
     },
     "@media (max-width: 600px)": {
-      fontSize: "0.9rem !important",
+      fontSize: "0.95rem !important",
     },
     "@media (max-width: 480px)": {
-      fontSize: "0.85rem !important",
+      fontSize: "0.9rem !important",
     },
     "@media (max-width: 375px)": {
-      fontSize: "0.8rem !important",
+      fontSize: "0.85rem !important",
     },
   },
   subdescription: {
     color: "#4b5563",
     marginBottom: "1rem",
     lineHeight: "1.7 !important",
-    fontSize: "1rem !important",
+    fontSize: "1.2rem !important",
+    "@media (max-width: 1200px)": {
+      fontSize: "1.1rem !important",
+    },
     "@media (max-width: 960px)": {
-      fontSize: "0.95rem !important",
+      fontSize: "1rem !important",
     },
     "@media (max-width: 600px)": {
-      fontSize: "0.9rem !important",
+      fontSize: "0.95rem !important",
     },
     "@media (max-width: 480px)": {
-      fontSize: "0.85rem !important",
+      fontSize: "0.9rem !important",
     },
     "@media (max-width: 375px)": {
-      fontSize: "0.8rem !important",
+      fontSize: "0.85rem !important",
     },
   },
   button: {
@@ -322,9 +324,7 @@ export default function GigaLMSDashboard1() {
                         <Typography
                           variant="body2"
                           style={{
-                            color: isActive
-                              ? feature.theme.text
-                              : "#6b7280",
+                            color: isActive ? feature.theme.text : "#6b7280",
                           }}
                         >
                           {feature.description}

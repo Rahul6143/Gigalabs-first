@@ -32,6 +32,18 @@ const useStyles = makeStyles({
     marginBottom: "24px",
     padding: "0 16px",
   },
+  headerTitle: {
+    fontWeight: "700 !important",
+    fontSize: "2.8rem !important", // Default
+    lineHeight: "2.5rem !important",
+  },
+  headerDesc: {
+    color: "#6b7280",
+    maxWidth: "900px",
+    margin: "0 auto",
+    fontSize: "1.2rem !important", // Default
+    lineHeight: "1.6rem !important",
+  },
   userTypesBox: {
     display: "flex",
     flexWrap: "wrap",
@@ -77,11 +89,13 @@ const useStyles = makeStyles({
     fontWeight: "700 !important",
     textAlign: "center",
     marginBottom: "8px",
+    fontSize: "2.8rem !important", // default title size
   },
   howItWorksDesc: {
     textAlign: "center",
     color: "rgba(255,255,255,0.9)",
     marginBottom: "20px !important",
+    fontSize: "1.2rem !important", // default desc size
   },
   stepsContainer: {
     position: "relative",
@@ -169,22 +183,24 @@ const useStyles = makeStyles({
   /* ================= RESPONSIVE BREAKPOINTS ================= */
 
   "@media (max-width: 1200px)": {
-    stepsContainer: {
-      gap: "16px",
-    },
-    stepBox: {
-      minWidth: "200px",
-    },
+    headerTitle: { fontSize: "2.5rem !important" },
+    headerDesc: { fontSize: "1.1rem !important" },
+    howItWorksTitle: { fontSize: "2.5rem !important" },
+    howItWorksDesc: { fontSize: "1.1rem !important" },
+    stepsContainer: { gap: "16px" },
+    stepBox: { minWidth: "200px" },
   },
 
   "@media (max-width: 960px)": {
+    headerTitle: { fontSize: "2.2rem !important" },
+    headerDesc: { fontSize: "1rem !important" },
+    howItWorksTitle: { fontSize: "2.2rem !important" },
+    howItWorksDesc: { fontSize: "1rem !important" },
     stepsContainer: {
       flexWrap: "wrap",
       justifyContent: "center",
     },
-    connector: {
-      display: "none",
-    },
+    connector: { display: "none" },
     stepBox: {
       flex: "1 1 100%",
       maxWidth: "400px",
@@ -192,35 +208,28 @@ const useStyles = makeStyles({
   },
 
   "@media (max-width: 600px)": {
-    headerBox: {
-      padding: "0 12px",
-    },
-    userTypesBox: {
-      gap: "12px",
-    },
-    userCard: {
-      flex: "1 1 100%",
-      maxWidth: "100%",
-    },
+    headerTitle: { fontSize: "1.9rem !important" },
+    headerDesc: { fontSize: "0.95rem !important" },
+    howItWorksTitle: { fontSize: "1.9rem !important" },
+    howItWorksDesc: { fontSize: "0.95rem !important" },
+    headerBox: { padding: "0 12px" },
+    userTypesBox: { gap: "12px" },
+    userCard: { flex: "1 1 100%", maxWidth: "100%" },
     stepBox: {
       flexDirection: "column",
       textAlign: "center",
       gap: "12px",
     },
-    stepTitle: {
-      justifyContent: "center",
-    },
+    stepTitle: { justifyContent: "center" },
   },
 
   "@media (max-width: 480px)": {
-    howItWorksBox: {
-      padding: "24px 16px",
-    },
-    stepNumberBox: {
-      width: "48px",
-      height: "48px",
-      fontSize: "0.8rem",
-    },
+    headerTitle: { fontSize: "1.7rem !important" },
+    headerDesc: { fontSize: "0.9rem !important" },
+    howItWorksTitle: { fontSize: "1.7rem !important" },
+    howItWorksDesc: { fontSize: "0.9rem !important" },
+    howItWorksBox: { padding: "24px 16px" },
+    stepNumberBox: { width: "48px", height: "48px", fontSize: "0.8rem" },
     startButton: {
       fontSize: "0.8rem !important",
       padding: "10px 20px !important",
@@ -228,7 +237,10 @@ const useStyles = makeStyles({
   },
 
   "@media (max-width: 375px)": {
-    /* Turn user cards into horizontal scroll */
+    headerTitle: { fontSize: "1.5rem !important" },
+    headerDesc: { fontSize: "0.85rem !important" },
+    howItWorksTitle: { fontSize: "1.5rem !important" },
+    howItWorksDesc: { fontSize: "0.85rem !important" },
     userTypesBox: {
       flexWrap: "nowrap",
       overflowX: "auto",
@@ -236,24 +248,14 @@ const useStyles = makeStyles({
       gap: "12px",
       paddingBottom: "8px",
       scrollSnapType: "x mandatory",
-      "&::-webkit-scrollbar": {
-        display: "none",
-      },
+      "&::-webkit-scrollbar": { display: "none" },
     },
     userCard: {
       flex: "0 0 80%",
       maxWidth: "80%",
       scrollSnapAlign: "center",
     },
-    howItWorksTitle: {
-      fontSize: "1.1rem",
-    },
-    howItWorksDesc: {
-      fontSize: "0.85rem",
-    },
-    stepDesc: {
-      fontSize: "0.8rem",
-    },
+    stepDesc: { fontSize: "0.8rem" },
   },
 });
 
@@ -313,13 +315,10 @@ const GigaPrescreener1 = () => {
       <Container maxWidth="lg" className={classes.container}>
         {/* Header */}
         <Box className={classes.headerBox}>
-          <Typography variant="h4" style={{ fontWeight: 700 }} gutterBottom>
+          <Typography className={classes.headerTitle} gutterBottom>
             Giga Prescreener Tool
           </Typography>
-          <Typography
-            variant="body1"
-            style={{ color: "#6b7280", maxWidth: "900px", margin: "0 auto" }}
-          >
+          <Typography className={classes.headerDesc}>
             A structured, transparent, and supportive pathway for graduates,
             career switchers, and returnees to restart their IT careers with
             confidence.

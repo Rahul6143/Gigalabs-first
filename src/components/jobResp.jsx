@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     background: "linear-gradient(90deg, #ffffff, #c1c1c1)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    fontSize: "3rem !important",
+    fontSize: "2.8rem !important",
   },
   description: {
     maxWidth: "1200px",
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     padding: "0 16px",
     color: "#cfd3d6 !important",
     textAlign: "center",
-    fontSize: "1.2rem",
+    fontSize: "1.2rem !important",
     lineHeight: 1.6,
   },
   featuresBox: {
@@ -67,15 +67,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     gap: "120px",
-    // flexWrap: "wrap",
-    // marginTop: "32px",
   },
-//   arrowContainer: {
-//     "& svg": {
-//       maxWidth: "100%",
-//       height: "auto",
-//     },
-//   },
   cardBox: {
     display: "flex",
     justifyContent: "center",
@@ -134,35 +126,32 @@ const useStyles = makeStyles({
   // 📱 RESPONSIVENESS
   "@media (max-width: 1200px)": {
     title: { fontSize: "2.5rem !important" },
-    description: { fontSize: "1.1rem" },
-  },
-  "@media (min-width: 960px)": {
-    arrowsBox: { gap: "100px" },
-    card: { width: "525px", },
-    description: { fontSize: "1rem" },
-  },
-    "@media (max-width: 1063px)": {
-        arrowsBox: { display: "none"},
-        card: {marginTop: "50px", },
-    },
-  "@media (max-width: 600px)": {
-    title: { fontSize: "2rem !important" },
+    description: { fontSize: "1.1rem !important" },
     arrowsBox: { display: "none" },
-    card: { width: "90%",marginTop: "50px", },
+    cardBox: { marginTop: "15px" },
+  },
+  "@media (max-width: 960px)": {
+    title: { fontSize: "2.2rem !important" },
+    description: { fontSize: "1rem !important" },
+  },
+  "@media (max-width: 600px)": {
+    title: { fontSize: "1.9rem !important" },
+    description: { fontSize: "0.95rem !important" },
+    card: { width: "90%", marginTop: "5px" },
     cardText: { fontSize: "0.95rem" },
   },
   "@media (max-width: 480px)": {
-    title: { fontSize: "1.6rem !important" },
-    description: { fontSize: "0.9rem" },
+    title: { fontSize: "1.7rem !important" },
+    description: { fontSize: "0.9rem !important" },
     featuresBox: { flexDirection: "column", gap: "0.75rem" },
-    arrowsBox: { display: "none"},
+    arrowsBox: { display: "none" },
   },
   "@media (max-width: 375px)": {
-    title: { fontSize: "1.4rem !important" },
-    description: { fontSize: "0.85rem" },
+    title: { fontSize: "1.5rem !important" },
+    description: { fontSize: "0.85rem !important" },
     cardText: { fontSize: "0.85rem" },
     featuresBox: { gap: "0.5rem" },
-    arrowsBox: { display:"none"},
+    arrowsBox: { display: "none" },
   },
 });
 
@@ -262,58 +251,163 @@ const GigaJobPortal1 = () => {
         {/* Arrows */}
         <Box className={classes.arrowsBox}>
           {cardsData.map((_, index) => (
-            <Box key={index} className={classes.arrowContainer}>
+            <Box key={index}>
               {index === 0 && (
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 309.9445661388727 232.21544479424125" width="120" height="100">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 309.9445661388727 232.21544479424125"
+                  width="120"
+                  height="100"
+                >
                   <g strokeLinecap="round">
                     <g transform="translate(21.075 10)">
-                      <path d="M0 0 C2.16 14.82, -33.54 53.57, 12.94 88.94 C59.41 124.3, 234.55 191.67, 278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M253.9 210.89 C262.45 211.34, 270.99 211.8, 278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M260.6 195.15 C266.85 200.99, 273.1 206.83, 278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path
+                        d="M0 0 C2.16 14.82, -33.54 53.57, 12.94 88.94 C59.41 124.3, 234.55 191.67, 278.87 212.22"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M253.9 210.89 C262.45 211.34, 270.99 211.8, 278.87 212.22"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M260.6 195.15 C266.85 200.99, 273.1 206.83, 278.87 212.22"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
                     </g>
                   </g>
                 </svg>
               )}
               {index === 1 && (
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281.5041901698314 307.31977189286783" width="80" height="75">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 281.5041901698314 307.31977189286783"
+                  width="80"
+                  height="75"
+                >
                   <g strokeLinecap="round">
                     <g transform="translate(10 10)">
-                      <path d="M0 0 C43.58 47.89, 217.92 239.43, 261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M239.37 275.7 C247.66 280.05, 255.95 284.41, 261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M252.01 264.19 C255.57 272.85, 259.12 281.52, 261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path
+                        d="M0 0 C43.58 47.89, 217.92 239.43, 261.5 287.32"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M239.37 275.7 C247.66 280.05, 255.95 284.41, 261.5 287.32"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M252.01 264.19 C255.57 272.85, 259.12 281.52, 261.5 287.32"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
                     </g>
                   </g>
                 </svg>
               )}
               {index === 2 && (
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.059643361439157 348.2948698282619" width="20" height="75">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 21.059643361439157 348.2948698282619"
+                  width="20"
+                  height="75"
+                >
                   <g strokeLinecap="round">
                     <g transform="translate(10 10)">
-                      <path d="M0 0 C0.18 54.72, 0.88 273.58, 1.06 328.29"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M-7.57 304.83 C-4.24 313.88, -0.91 322.92, 1.06 328.29"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M9.53 304.78 C6.27 313.84, 3 322.91, 1.06 328.29"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path
+                        d="M0 0 C0.18 54.72, 0.88 273.58, 1.06 328.29"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M-7.57 304.83 C-4.24 313.88, -0.91 322.92, 1.06 328.29"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M9.53 304.78 C6.27 313.84, 3 322.91, 1.06 328.29"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
                     </g>
                   </g>
                 </svg>
               )}
               {index === 3 && (
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281.5041901698314 307.31977189286783" width="80" height="75">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 281.5041901698314 307.31977189286783"
+                  width="80"
+                  height="75"
+                >
                   <g strokeLinecap="round">
                     <g transform="translate(271.5 10)">
-                      <path d="M0 0 C-43.58 47.89, -217.92 239.43, -261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M-252.01 264.19 C-255.57 272.85, -259.12 281.52, -261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M-239.37 275.7 C-247.66 280.05, -255.95 284.41, -261.5 287.32"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path
+                        d="M0 0 C-43.58 47.89, -217.92 239.43, -261.5 287.32"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M-252.01 264.19 C-255.57 272.85, -259.12 281.52, -261.5 287.32"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M-239.37 275.7 C-247.66 280.05, -255.95 284.41, -261.5 287.32"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
                     </g>
                   </g>
                 </svg>
               )}
               {index === 4 && (
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 309.94456613887087 232.21544479424125" width="120" height="100">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 309.94456613887087 232.21544479424125"
+                  width="120"
+                  height="100"
+                >
                   <g strokeLinecap="round">
                     <g transform="translate(288.87 10)">
-                      <path d="M0 0 C-2.16 14.82, 33.54 53.57, -12.94 88.94 C-59.41 124.3, -234.55 191.67, -278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M-260.6 195.15 C-266.85 200.99, -273.1 206.83, -278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
-                      <path d="M-253.9 210.89 C-262.45 211.34, -270.99 211.8, -278.87 212.22"  stroke={current === index ? "#4ade80" : "#1e1e1e"} strokeWidth="4" fill="none"/>
+                      <path
+                        d="M0 0 C-2.16 14.82, 33.54 53.57, -12.94 88.94 C-59.41 124.3, -234.55 191.67, -278.87 212.22"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M-260.6 195.15 C-266.85 200.99, -273.1 206.83, -278.87 212.22"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <path
+                        d="M-253.9 210.89 C-262.45 211.34, -270.99 211.8, -278.87 212.22"
+                        stroke={current === index ? "#4ade80" : "#1e1e1e"}
+                        strokeWidth="4"
+                        fill="none"
+                      />
                     </g>
                   </g>
                 </svg>
