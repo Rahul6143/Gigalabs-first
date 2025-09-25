@@ -67,7 +67,6 @@ const useStyles = makeStyles(() => ({
     "@media (max-width: 375px)": {
       width: "100%",
       padding: "0 1rem", // ✅ prevent content from hugging left
-      
     },
   },
 
@@ -91,19 +90,19 @@ const useStyles = makeStyles(() => ({
     marginBottom: "1.2rem !important",
 
     "@media (max-width: 1200px)": {
-      fontSize: "2.6rem !important",
+      fontSize: "2.5rem !important",
     },
     "@media (max-width: 960px)": {
-      fontSize: "2.4rem !important",
+      fontSize: "2.2rem !important",
     },
     "@media (max-width: 600px)": {
-      fontSize: "2.1rem !important",
-    },
-    "@media (max-width: 480px)": {
       fontSize: "1.9rem !important",
     },
-    "@media (max-width: 375px)": {
+    "@media (max-width: 480px)": {
       fontSize: "1.7rem !important",
+    },
+    "@media (max-width: 375px)": {
+      fontSize: "1.5rem !important",
     },
   },
 
@@ -115,23 +114,26 @@ const useStyles = makeStyles(() => ({
   },
 
   subtitle: {
-    fontSize: "1.15rem",
-    fontWeight: 400,
-    lineHeight: 1.9,
+    fontSize: "1.2rem !important",
+    fontWeight: "400 !important",
+    lineHeight: "1.9 !important",
     marginBottom: "1rem !important",
     color: "#cbd5e1",
 
+    "@media (max-width: 1200px)": {
+      fontSize: "1.1rem !important",
+    },
     "@media (max-width: 960px)": {
-      fontSize: "1.05rem",
+      fontSize: "1rem !important",
     },
     "@media (max-width: 600px)": {
-      fontSize: "1rem",
+      fontSize: "0.95rem !important",
     },
     "@media (max-width: 480px)": {
-      fontSize: "0.95rem",
+      fontSize: "0.9rem !important",
     },
     "@media (max-width: 375px)": {
-      fontSize: "0.9rem",
+      fontSize: "0.85rem !important",
     },
   },
 
@@ -266,7 +268,6 @@ const useStyles = makeStyles(() => ({
       gap: "1rem",
       alignItems: "center",
     },
-    
   },
 
   columnHeader: {

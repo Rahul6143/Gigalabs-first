@@ -216,7 +216,7 @@ const useStyles = makeStyles({
       fontSize: "1.1rem !important",
     },
     heading1: {
-      fontSize: "2.4rem !important",
+      fontSize: "2.2rem !important",
     },
     heading2: {
       fontSize: "1.8rem !important",
@@ -233,10 +233,10 @@ const useStyles = makeStyles({
   "@media (max-width: 600px)": {
     subtitle: {
       padding: "1rem 2rem",
-      fontSize: "1rem !important",
+      fontSize: "0.95rem !important",
     },
     heading1: {
-      fontSize: "2rem !important",
+      fontSize: "1.9rem !important",
     },
     heading2: {
       fontSize: "1.5rem !important",
@@ -268,7 +268,7 @@ const useStyles = makeStyles({
   "@media (max-width: 480px)": {
     subtitle: {
       padding: "1rem 1rem",
-      fontSize: "0.95rem !important",
+      fontSize: "0.9rem !important",
       zIndex: '2 !important'
     },
     heading1: {
@@ -285,7 +285,7 @@ const useStyles = makeStyles({
   "@media (max-width: 380px)": {
     subtitle: {
       padding: "0.5rem 0.8rem",
-      fontSize: "0.9rem !important",
+      fontSize: "0.85rem !important",
     },
     heading1: {
       fontSize: "1.5rem !important",

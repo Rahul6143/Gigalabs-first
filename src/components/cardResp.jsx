@@ -66,83 +66,92 @@ const useStyles = makeStyles({
   },
   title1: {
     fontFamily: `"Trebuchet MS", Helvetica, sans-serif`,
-    fontSize: "2rem !important",
+    fontSize: "2.8rem !important",
     marginBottom: "1rem",
     paddingBottom: "0.5rem",
     color: "#000000",
     fontWeight: "600 !important",
     "@media (max-width:1200px)": {
-      fontSize: "1.8rem !important",
+      fontSize: "2.5rem !important",
     },
     "@media (max-width:960px)": {
-      fontSize: "1.6rem !important",
+      fontSize: "2.2rem !important",
     },
     "@media (max-width:600px)": {
-      fontSize: "1.5rem !important",
+      fontSize: "1.9rem !important",
     },
     "@media (max-width:480px)": {
-      fontSize: "1.3rem !important",
+      fontSize: "1.7rem !important",
     },
     "@media (max-width:375px)": {
-      fontSize: "1.2rem !important",
+      fontSize: "1.5rem !important",
     },
   },
   title2: {
     fontFamily: `"Trebuchet MS", Helvetica, sans-serif`,
-    fontSize: "2rem !important",
+    fontSize: "2.8rem !important",
     marginBottom: "1rem",
     textAlign: "right",
     color: "#000000",
     paddingBottom: "0.5rem",
     fontWeight: "600 !important",
     "@media (max-width:1200px)": {
-      fontSize: "1.8rem !important",
+      fontSize: "2.5rem !important",
     },
     "@media (max-width:960px)": {
-      fontSize: "1.6rem !important",
+      fontSize: "2.2rem !important",
     },
     "@media (max-width:600px)": {
-      fontSize: "1.5rem !important",
+      fontSize: "1.9rem !important",
       textAlign: "center",
     },
     "@media (max-width:480px)": {
-      fontSize: "1.3rem !important",
+      fontSize: "1.7rem !important",
     },
     "@media (max-width:375px)": {
-      fontSize: "1.2rem !important",
+      fontSize: "1.5rem !important",
     },
   },
   paragraph1: {
-    fontSize: "1rem !important",
+    fontSize: "1.2rem !important",
     fontFamily: `"Inter", sans-serif !important`,
     color: "#333333c7",
+    "@media (max-width:1200px)": {
+      fontSize: "1.1rem !important",
+    },
     "@media (max-width:960px)": {
-      fontSize: "0.95rem !important",
+      fontSize: "1rem !important",
     },
     "@media (max-width:600px)": {
-      fontSize: "0.9rem !important",
+      fontSize: "0.95rem !important",
     },
     "@media (max-width:480px)": {
-      fontSize: "0.85rem !important",
+      fontSize: "0.9rem !important",
     },
     "@media (max-width:375px)": {
-      fontSize: "0.8rem !important",
+      fontSize: "0.85rem !important",
     },
   },
   paragraph2: {
-    fontSize: "1rem !important",
+    fontSize: "1.2rem !important",
     fontFamily: `"Inter", sans-serif !important`,
     color: "#333333c7",
     textAlign: "right",
+    "@media (max-width:1200px)": {
+      fontSize: "1.1rem !important",
+    },
+    "@media (max-width:960px)": {
+      fontSize: "1rem !important",
+    },
     "@media (max-width:600px)": {
       textAlign: "center",
-      fontSize: "0.9rem !important",
+      fontSize: "0.95rem !important",
     },
     "@media (max-width:480px)": {
-      fontSize: "0.85rem !important",
+      fontSize: "0.9rem !important",
     },
     "@media (max-width:375px)": {
-      fontSize: "0.8rem !important",
+      fontSize: "0.85rem !important",
     },
   },
   imageBox: {

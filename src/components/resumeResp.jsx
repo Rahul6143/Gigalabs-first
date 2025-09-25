@@ -168,6 +168,50 @@ const useStyles = makeStyles({
     backgroundColor: "#bfdbfe",
     flexShrink: 0,
   },
+
+  // Unified Responsive Typography
+  title: {
+    fontSize: "2.8rem !important",
+    fontWeight: "bold !important",
+    marginBottom: "16px",
+    "@media (max-width:1200px)": {
+      fontSize: "2.5rem !important",
+    },
+    "@media (max-width:960px)": {
+      fontSize: "2.2rem !important",
+    },
+    "@media (max-width:600px)": {
+      fontSize: "1.9rem !important",
+    },
+    "@media (max-width:480px)": {
+      fontSize: "1.7rem !important",
+    },
+    "@media (max-width:375px)": {
+      fontSize: "1.5rem !important",
+    },
+  },
+
+  subtitle: {
+    fontSize: "1.2rem !important",
+    color: "#6b7280",
+    marginBottom: "24px",
+    lineHeight: 1.6,
+    "@media (max-width:1200px)": {
+      fontSize: "1.1rem !important",
+    },
+    "@media (max-width:960px)": {
+      fontSize: "1rem !important",
+    },
+    "@media (max-width:600px)": {
+      fontSize: "0.95rem !important",
+    },
+    "@media (max-width:480px)": {
+      fontSize: "0.9rem !important",
+    },
+    "@media (max-width:375px)": {
+      fontSize: "0.85rem !important",
+    },
+  },
 });
 
 const featureData = [
@@ -211,7 +255,6 @@ const featureData = [
       "Include more action verbs like 'developed', 'managed', and 'optimized'.",
     icon: <Sparkles size={20} color="#f97316" />,
     chipColor: "#f97316",
-    // border: "1px solid #f97316 !important",
   },
   {
     title: "ATS-Friendly Templates",
@@ -246,16 +289,10 @@ export default function ResumeBuilder() {
       <Box className={classes.flexContainer}>
         {/* Left Panel */}
         <Box className={classes.leftPanel}>
-          <Typography
-            variant="h3"
-            style={{ fontWeight: "bold", marginBottom: "16px" }}
-          >
+          <Typography className={classes.title}>
             GiGa Resume Builder
           </Typography>
-          <Typography
-            variant="body1"
-            style={{ color: "#6b7280", marginBottom: "24px" }}
-          >
+          <Typography className={classes.subtitle}>
             The GiGa Resume Builder is not just another CV maker; it is powered
             by AI Lab intelligence and designed for the future of work. Best of
             all, it is completely free to use.
